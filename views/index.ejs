@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head><%- include('partials/head') %></head>
+<body>
+
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="page-transition" id="page-transition"></div>
+
+<%- include('partials/nav') %>
+
+<main class="page-wrapper">
+
+  <!-- HERO -->
+  <section class="hero-section" id="hero">
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="section-label reveal">Full Stack Developer</div>
+        <h1 class="hero-title">
+          <span class="hero-word reveal reveal-delay-1">Yunus</span>
+          <span class="hero-word hero-word-em reveal reveal-delay-2">Emre</span>
+          <span class="hero-word reveal reveal-delay-3">Tom</span>
+        </h1>
+        <div class="hero-typing reveal reveal-delay-4">
+          <span class="typing-prefix">// </span>
+          <span id="typing-text"></span>
+          <span class="typing-cursor"></span>
+        </div>
+        <p class="hero-desc reveal reveal-delay-5">
+          Temiz kod, güçlü mimariler ve kullanıcı odaklı çözümler üretiyorum.
+          Backend'den frontend'e, yapay zekadan drone'lara — fikirden ürüne.
+        </p>
+        <div class="hero-cta reveal reveal-delay-5">
+          <a href="/projects" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Projelere Bak
+          </a>
+          <a href="/contact" class="btn-outline">İletişime Geç</a>
+        </div>
+      </div>
+
+      <div class="hero-image reveal reveal-delay-3">
+        <div class="profile-frame">
+          <img class="profile-img" src="/imgs/profile.png" alt="Yunus Emre Tom">
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-indicator">Scroll</div>
+    </div>
+  </section>
+
+  <!-- QUICK STATS -->
+  <section class="stats-section">
+    <div class="section">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number"><span class="counter" data-target="7">0</span>+</div>
+          <div class="stat-label">Yıl Deneyim</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-number"><span class="counter" data-target="20">0</span>+</div>
+          <div class="stat-label">Proje</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-number"><span class="counter" data-target="5">0</span></div>
+          <div class="stat-label">Teknoloji Alanı</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Öğrenme İsteği</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEASER -->
+  <section class="teaser-section">
+    <div class="section">
+      <div class="teaser-grid">
+        <a href="/about" class="teaser-card reveal">
+          <div class="teaser-icon">01</div>
+          <h3>Hakkımda</h3>
+          <p>Yazılım yolculuğum, yeteneklerim ve felsefem hakkında.</p>
+          <span class="teaser-arrow">→</span>
+        </a>
+        <a href="/projects" class="teaser-card reveal reveal-delay-1">
+          <div class="teaser-icon">02</div>
+          <h3>Projeler</h3>
+          <p>GitHub'dan canlı çekilen tüm public projelerim.</p>
+          <span class="teaser-arrow">→</span>
+        </a>
+        <a href="/contact" class="teaser-card reveal reveal-delay-2">
+          <div class="teaser-icon">03</div>
+          <h3>İletişim</h3>
+          <p>Yeni fırsatlar ve iş birlikleri için bana ulaş.</p>
+          <span class="teaser-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+
+<style>
+/* Hero */
+.hero-section {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 3rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  margin: 1rem 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+.hero-word-em { color: var(--gold); }
+.hero-typing {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  min-height: 1.5em;
+}
+.typing-prefix { color: var(--violet); }
+.hero-desc {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 480px;
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-image { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Stats */
+.stats-section { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+.stats-grid .stat-card { border: none; }
+
+/* Teaser */
+.teaser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.teaser-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.teaser-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--violet));
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+.teaser-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+.teaser-card:hover::before { transform: scaleX(1); }
+.teaser-icon { font-family: var(--mono); font-size: 0.68rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 1.25rem; }
+.teaser-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+.teaser-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.teaser-arrow { font-family: var(--mono); color: var(--gold); font-size: 1.1rem; }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; padding: 5rem 1.5rem 3rem; text-align: center; }
+  .hero-image { order: -1; }
+  .profile-frame { width: 220px; height: 260px; margin: 0 auto; }
+  .hero-cta { justify-content: center; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .teaser-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<script src="/js/main.js"></script>
+<script src="/js/animations.js"></script>
+</body>
+</html>

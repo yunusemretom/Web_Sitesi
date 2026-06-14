@@ -1,0 +1,25 @@
+<nav id="main-nav">
+  <a href="/" class="nav-logo">yunusemretom</a>
+
+  <ul class="nav-links">
+    <li><a href="/" class="nav-link <%= page === 'home' ? 'active' : '' %>" data-text="Ana Sayfa">Ana Sayfa</a></li>
+    <li><a href="/about" class="nav-link <%= page === 'about' ? 'active' : '' %>" data-text="Hakkımda">Hakkımda</a></li>
+    <li><a href="/projects" class="nav-link <%= page === 'projects' ? 'active' : '' %>" data-text="Projeler">Projeler</a></li>
+    <li><a href="/contact" class="nav-link <%= page === 'contact' ? 'active' : '' %>" data-text="İletişim">İletişim</a></li>
+  </ul>
+
+  <button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Menüyü Aç">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="/" class="<%= page === 'home' ? 'active' : '' %>">Ana Sayfa</a></li>
+    <li><a href="/about" class="<%= page === 'about' ? 'active' : '' %>">Hakkımda</a></li>
+    <li><a href="/projects" class="<%= page === 'projects' ? 'active' : '' %>">Projeler</a></li>
+    <li><a href="/contact" class="<%= page === 'contact' ? 'active' : '' %>">İletişim</a></li>
+  </ul>
+</div>

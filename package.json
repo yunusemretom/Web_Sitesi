@@ -1,0 +1,29 @@
+{
+  "name": "web_sitesi",
+  "version": "1.0.0",
+  "description": "Basit, statik bir kişisel portföy sitesi. İçerik `index.html`, stiller `css/styles.css` ve küçük etkileşimler `js/scripts.js` içinde tutulur.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "echo \"No tests\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yunusemretom/Web_Sitesi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yunusemretom/Web_Sitesi/issues"
+  },
+  "homepage": "https://github.com/yunusemretom/Web_Sitesi#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^4.22.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

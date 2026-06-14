@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head><%- include('partials/head') %></head>
+<body>
+
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="page-transition" id="page-transition"></div>
+
+<%- include('partials/nav') %>
+
+<main class="page-wrapper">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner section">
+      <div class="section-label reveal">01 — Hakkımda</div>
+      <h1 class="reveal reveal-delay-1">Kod yazarken<br><em>detaylara takılırım.</em></h1>
+    </div>
+  </section>
+
+  <!-- ABOUT CONTENT -->
+  <section class="section">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="reveal">
+          Merhaba! Ben <strong>Yunus Emre Tom</strong>, bir Full Stack Yazılım Geliştiricisiyim.
+          Backend'den frontend'e, her katmanda kod yazmayı ve problem çözmeyi seviyorum.
+          Özellikle yapay zeka, robotik sistemler ve ölçeklenebilir mimariler üzerine yoğunlaşıyorum.
+        </p>
+        <p class="reveal reveal-delay-1">
+          Yazılıma olan ilgim ortaokul yıllarında başladı. O günden bu yana Python, C#, Java ve
+          web ekosistemlerinde yoğun çalışmalar yaptım. RC uçak ve drone projeleriyle de ilgileniyorum —
+          bu da bana gömülü sistemler ve gerçek zamanlı veri işleme konularında derin deneyim kazandırdı.
+          Aynı zamanda lisanslı bir amatör İHA pilotuyum.
+        </p>
+        <p class="reveal reveal-delay-2">
+          Yapay zeka alanında görüntü işleme (YOLO, RFDetr) ve sesli asistan projeleri üzerinde
+          aktif geliştirme sürdürüyorum. ROS2 + PX4 üzerinde otonom drone kontrol sistemleri
+          araştırıyorum.
+        </p>
+        <p class="reveal reveal-delay-3">
+          Temiz mimari, test odaklı geliştirme ve sürdürülebilir kod benim için temel prensipler.
+          Bir projeyi bitirmek değil; <em>doğru bitirmek</em> önemlidir.
+        </p>
+        <div class="about-actions reveal reveal-delay-4">
+          <a href="/assets/cv.pdf" class="btn-primary" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            CV İndir
+          </a>
+          <a href="/contact" class="btn-outline">İletişime Geç</a>
+        </div>
+      </div>
+
+      <div class="about-stats-col">
+        <div class="stats-grid-2 reveal">
+          <div class="stat-card"><div class="stat-number"><span class="counter" data-target="7">0</span>+</div><div class="stat-label">Yıl Deneyim</div></div>
+          <div class="stat-card"><div class="stat-number"><span class="counter" data-target="20">0</span>+</div><div class="stat-label">Proje</div></div>
+          <div class="stat-card"><div class="stat-number"><span class="counter" data-target="5">0</span></div><div class="stat-label">Teknoloji Alanı</div></div>
+          <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">Öğrenme</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section">
+    <div class="section">
+      <div class="section-label reveal">02 — Yetenekler</div>
+      <h2 class="reveal reveal-delay-1">Araç kutum.</h2>
+
+      <div class="skills-blocks">
+        <div class="skill-block reveal">
+          <div class="skill-block-title">Backend</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-item-top"><span>Python</span><span class="skill-pct">90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>C# / C++</span><span class="skill-pct">75%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>FastAPI</span><span class="skill-pct">85%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>Java</span><span class="skill-pct">65%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+            </div>
+          </div>
+          <div class="skill-tags-row">
+            <span class="skill-tag">Python</span><span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">C#</span><span class="skill-tag">C++</span><span class="skill-tag">Java</span>
+          </div>
+        </div>
+
+        <div class="skill-block reveal reveal-delay-1">
+          <div class="skill-block-title">Yapay Zeka & Robotik</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-item-top"><span>ROS2 / PX4</span><span class="skill-pct">80%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>Computer Vision (YOLO)</span><span class="skill-pct">85%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>TTS / STT</span><span class="skill-pct">70%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+            </div>
+          </div>
+          <div class="skill-tags-row">
+            <span class="skill-tag">ROS2</span><span class="skill-tag">PX4</span>
+            <span class="skill-tag">YOLO</span><span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">Gazebo</span>
+          </div>
+        </div>
+
+        <div class="skill-block reveal reveal-delay-2">
+          <div class="skill-block-title">Frontend & DevOps</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-item-top"><span>HTML / CSS / JS</span><span class="skill-pct">80%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>Docker / CI-CD</span><span class="skill-pct">70%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-item-top"><span>PostgreSQL / MySQL</span><span class="skill-pct">75%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+            </div>
+          </div>
+          <div class="skill-tags-row">
+            <span class="skill-tag">Docker</span><span class="skill-tag">Git</span>
+            <span class="skill-tag">Linux</span><span class="skill-tag">Nginx</span>
+            <span class="skill-tag">PostgreSQL</span><span class="skill-tag">QT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+
+<style>
+.page-hero {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.page-hero-inner { padding-bottom: 4rem; }
+.page-hero h1 em { font-style: italic; color: var(--gold); }
+
+.about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+.about-text p { color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.9; }
+.about-text strong { color: var(--text); }
+.about-text em { color: var(--gold); font-style: italic; }
+.about-actions { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+.stats-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.skills-section { background: var(--bg-card); border-top: 1px solid var(--border); }
+.skills-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+.skill-block {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  transition: border-color var(--transition);
+}
+.skill-block:hover { border-color: var(--border-hover); }
+.skill-block-title {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.skill-list { margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.skill-item-top { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); }
+.skill-pct { font-family: var(--mono); font-size: 0.7rem; color: var(--gold); }
+.skill-tags-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .skills-blocks { grid-template-columns: 1fr; }
+}
+</style>
+
+<script src="/js/main.js"></script>
+<script src="/js/animations.js"></script>
+</body>
+</html>

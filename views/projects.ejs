@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head><%- include('partials/head') %></head>
+<body>
+
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="page-transition" id="page-transition"></div>
+
+<%- include('partials/nav') %>
+
+<main class="page-wrapper">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner section">
+      <div class="section-label reveal">03 — Projeler</div>
+      <h1 class="reveal reveal-delay-1">Ürettiklerim.</h1>
+      <p class="page-hero-sub reveal reveal-delay-2">
+        GitHub'daki public projelerim otomatik olarak buraya yükleniyor.
+      </p>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar-wrap">
+    <div class="filter-bar section-padding">
+      <button class="filter-btn active" data-filter="all">Tümü</button>
+      <button class="filter-btn" data-filter="Python">Python</button>
+      <button class="filter-btn" data-filter="JavaScript">JavaScript</button>
+      <button class="filter-btn" data-filter="C++">C++</button>
+      <button class="filter-btn" data-filter="C#">C#</button>
+      <button class="filter-btn" data-filter="other">Diğer</button>
+      <label class="filter-fork-toggle">
+        <input type="checkbox" id="show-forks"> Fork'ları Göster
+      </label>
+    </div>
+  </div>
+
+  <!-- PROJECTS GRID -->
+  <section class="section">
+    <div id="projects-grid" class="projects-grid">
+      <!-- Skeleton cards while loading -->
+      <div class="project-card skeleton-card"><div class="sk sk-title"></div><div class="sk sk-line"></div><div class="sk sk-line sk-short"></div><div class="sk sk-tags"></div></div>
+      <div class="project-card skeleton-card"><div class="sk sk-title"></div><div class="sk sk-line"></div><div class="sk sk-line sk-short"></div><div class="sk sk-tags"></div></div>
+      <div class="project-card skeleton-card"><div class="sk sk-title"></div><div class="sk sk-line"></div><div class="sk sk-line sk-short"></div><div class="sk sk-tags"></div></div>
+      <div class="project-card skeleton-card"><div class="sk sk-title"></div><div class="sk sk-line"></div><div class="sk sk-line sk-short"></div><div class="sk sk-tags"></div></div>
+      <div class="project-card skeleton-card"><div class="sk sk-title"></div><div class="sk sk-line"></div><div class="sk sk-line sk-short"></div><div class="sk sk-tags"></div></div>
+      <div class="project-card skeleton-card"><div class="sk sk-title"></div><div class="sk sk-line"></div><div class="sk sk-line sk-short"></div><div class="sk sk-tags"></div></div>
+    </div>
+    <div id="projects-error" class="projects-error" style="display:none">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Projeler yüklenirken bir sorun oluştu.</p>
+      <button class="btn-outline" onclick="loadProjects()">Tekrar Dene</button>
+    </div>
+    <div id="no-results" class="no-results" style="display:none">
+      <p>Bu filtre için proje bulunamadı.</p>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+
+<style>
+.page-hero { background: var(--bg-card); border-bottom: 1px solid var(--border); padding-top: 1rem; }
+.page-hero-inner { padding-bottom: 3rem; }
+.page-hero-sub { color: var(--text-muted); margin-top: 1rem; font-size: 1rem; }
+
+.filter-bar-wrap { border-bottom: 1px solid var(--border); background: var(--bg-card); position: sticky; top: 64px; z-index: 100; }
+.filter-bar { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; padding: 1rem 3rem; max-width: 1200px; margin: 0 auto; }
+.filter-btn {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 0.4rem 1rem;
+  background: transparent; color: var(--text-muted);
+  border: 1px solid var(--border); cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--gold); color: var(--gold); background: var(--gold-dim);
+}
+.filter-fork-toggle {
+  margin-left: auto; font-family: var(--mono); font-size: 0.68rem;
+  color: var(--text-dim); display: flex; align-items: center; gap: 0.5rem;
+  cursor: pointer; letter-spacing: 0.05em;
+}
+.filter-fork-toggle input { accent-color: var(--gold); }
+
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+
+/* Project card details */
+.project-num { font-family: var(--mono); font-size: 0.62rem; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+.project-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--text); margin-bottom: 0.6rem; }
+.project-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.25rem; flex: 1; }
+.project-desc.empty { font-style: italic; color: var(--text-dim); }
+.project-lang { display: flex; align-items: center; gap: 0.4rem; font-family: var(--mono); font-size: 0.68rem; color: var(--text-muted); margin-bottom: 1rem; }
+.lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.project-meta { display: flex; gap: 1rem; font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); margin-bottom: 1.25rem; }
+.project-meta span { display: flex; align-items: center; gap: 0.3rem; }
+.project-links { display: flex; gap: 0.75rem; align-items: center; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); }
+.project-link {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.35rem;
+  letter-spacing: 0.06em; transition: color var(--transition);
+}
+.project-link:hover { color: var(--gold); }
+.project-link.website-link {
+  margin-left: auto;
+  background: var(--gold-dim); color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 0.3rem 0.6rem;
+}
+.project-link.website-link:hover { background: var(--gold); color: #080810; }
+.project-fork-badge { font-family: var(--mono); font-size: 0.6rem; color: var(--text-dim); border: 1px solid var(--border); padding: 0.15rem 0.45rem; }
+
+/* Skeleton */
+.skeleton-card { display: flex; flex-direction: column; gap: 0.75rem; }
+.sk { border-radius: 2px; }
+.sk-title { height: 20px; width: 65%; }
+.sk-line { height: 12px; width: 100%; }
+.sk-short { width: 50%; }
+.sk-tags { height: 24px; width: 80%; }
+
+.projects-error { text-align: center; padding: 5rem 0; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.no-results { text-align: center; padding: 4rem 0; color: var(--text-muted); font-family: var(--mono); font-size: 0.85rem; }
+
+@media (max-width: 900px) { .filter-bar { padding: 0.75rem 1.5rem; } }
+</style>
+
+<script src="/js/main.js"></script>
+<script src="/js/animations.js"></script>
+<script src="/js/projects.js"></script>
+</body>
+</html>

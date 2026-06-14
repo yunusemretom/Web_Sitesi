@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head><%- include('partials/head') %></head>
+<body>
+
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="page-transition" id="page-transition"></div>
+
+<%- include('partials/nav') %>
+
+<main class="page-wrapper">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner section">
+      <div class="section-label reveal">04 — İletişim</div>
+      <h1 class="reveal reveal-delay-1">Bir şey mi<br><em>aklında?</em></h1>
+      <p class="page-hero-sub reveal reveal-delay-2">
+        Yeni projeler, iş birlikleri veya sadece merhaba için her zaman açığım.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section">
+    <div class="contact-layout">
+
+      <!-- LEFT: Info -->
+      <div class="contact-info">
+        <div class="contact-item reveal">
+          <div class="contact-item-label">E-Posta</div>
+          <a href="mailto:yunusemretom@gmail.com" class="contact-item-value">
+            yunusemretom@gmail.com
+          </a>
+        </div>
+        <div class="contact-item reveal reveal-delay-1">
+          <div class="contact-item-label">Konum</div>
+          <div class="contact-item-value">Türkiye</div>
+        </div>
+        <div class="contact-item reveal reveal-delay-2">
+          <div class="contact-item-label">Durum</div>
+          <div class="contact-item-value available">
+            <span class="available-dot"></span>
+            İş birliğine açık
+          </div>
+        </div>
+        <div class="contact-socials reveal reveal-delay-3">
+          <div class="contact-item-label" style="margin-bottom:1rem">Sosyal</div>
+          <div class="socials-grid">
+            <a href="https://github.com/yunusemretom" target="_blank" rel="noopener" class="social-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com/in/yunusemretom" target="_blank" rel="noopener" class="social-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://instagram.com/yunusemretom" target="_blank" rel="noopener" class="social-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+              <span>Instagram</span>
+            </a>
+            <a href="https://www.youtube.com/@yunusemretom" target="_blank" rel="noopener" class="social-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>YouTube</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Direct contact CTA -->
+      <div class="contact-cta-col reveal reveal-delay-2">
+        <div class="contact-cta-card">
+          <div class="cta-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3>Direkt İletişim</h3>
+          <p>En hızlı yol e-posta. Genellikle 24 saat içinde yanıt veriyorum.</p>
+          <a href="mailto:yunusemretom@gmail.com" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            E-Posta Gönder
+          </a>
+        </div>
+
+        <div class="contact-cta-card">
+          <div class="cta-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </div>
+          <h3>GitHub</h3>
+          <p>Projelerimi incele, katkıda bulun veya takip et.</p>
+          <a href="https://github.com/yunusemretom" target="_blank" rel="noopener" class="btn-outline">
+            Profili Görüntüle
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+
+<style>
+.page-hero { background: var(--bg-card); border-bottom: 1px solid var(--border); padding-top: 1rem; }
+.page-hero-inner { padding-bottom: 3rem; }
+.page-hero h1 em { font-style: italic; color: var(--gold); }
+.page-hero-sub { color: var(--text-muted); margin-top: 1rem; font-size: 1rem; }
+
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+.contact-item { margin-bottom: 2.5rem; }
+.contact-item-label { font-family: var(--mono); font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+.contact-item-value { font-size: 1.05rem; color: var(--text); }
+a.contact-item-value { transition: color var(--transition); }
+a.contact-item-value:hover { color: var(--gold); }
+.available { display: flex; align-items: center; gap: 0.6rem; }
+.available-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.5); animation: pulse-green 2s infinite; }
+@keyframes pulse-green { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.7;transform:scale(1.2)} }
+
+.socials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.social-card {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-muted); font-family: var(--mono); font-size: 0.72rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  transition: all var(--transition);
+}
+.social-card:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); transform: translateY(-2px); }
+
+.contact-cta-col { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-cta-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.contact-cta-card:hover { border-color: var(--border-hover); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+.cta-icon { color: var(--gold); margin-bottom: 0.5rem; }
+.contact-cta-card h3 { font-size: 1.2rem; }
+.contact-cta-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+@media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; gap: 3rem; } }
+</style>
+
+<script src="/js/main.js"></script>
+<script src="/js/animations.js"></script>
+</body>
+</html>
