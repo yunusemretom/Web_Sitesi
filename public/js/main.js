@@ -79,11 +79,12 @@
     });
   });
 
-  // Reveal on load
+  // Reveal on load — önce transition'sız tam göster, sonra yavaşça kaldır
+  overlay.style.transition = 'none';
   overlay.style.transformOrigin = 'top';
   overlay.style.transform = 'scaleY(1)';
-  requestAnimationFrame(() => {
-    overlay.style.transition = 'transform 0.55s cubic-bezier(0.4,0,0.2,1)';
+  setTimeout(() => {
+    overlay.style.transition = 'transform 0.65s cubic-bezier(0.4,0,0.2,1)';
     overlay.style.transform = 'scaleY(0)';
-  });
+  }, 80);
 })();
