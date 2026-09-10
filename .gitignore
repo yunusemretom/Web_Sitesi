@@ -1,4 +1,23 @@
+# ---- Node ----
 node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ---- Build output ----
+dist/
+build/
+.vite/
+.cache/
+
+# ---- Secrets ----
 .env
-*.log
+.env.*
+!.env.example
+
+# ---- IDE / OS ----
+.vscode/
+.idea/
+*.swp
 .DS_Store
+Thumbs.db
