@@ -1,7 +1,7 @@
 {
   "name": "web_sitesi",
   "version": "1.0.0",
-  "description": "Basit, statik bir kişisel portföy sitesi. İçerik `index.html`, stiller `css/styles.css` ve küçük etkileşimler `js/scripts.js` içinde tutulur.",
+  "description": "Bilingual engineering portfolio powered by Express, EJS and Sanity.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
@@ -21,7 +21,8 @@
   "homepage": "https://github.com/yunusemretom/Web_Sitesi#readme",
   "dependencies": {
     "ejs": "^6.0.1",
-    "express": "^4.22.2"
+    "express": "^4.22.2",
+    "@sanity/client": "^6.29.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
