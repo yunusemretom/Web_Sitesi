@@ -1,0 +1,10 @@
+<header class="site-nav">
+  <a class="brand" href="<%= routeFor('home', locale) %>"><span class="brand-mark">YT</span><span>yunusemretom<span class="brand-dot">.</span></span></a>
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    <% ['home','about','projects','competitions','contact'].forEach(key => { %>
+      <a class="<%= page === key ? 'active' : '' %>" href="<%= routeFor(key, locale) %>"><%= t.nav[key] %></a>
+    <% }) %>
+  </nav>
+  <a class="language-switch" href="<%= routeFor(page, locale === 'tr' ? 'en' : 'tr') %>" lang="<%= locale === 'tr' ? 'en' : 'tr' %>"><%= t.nav.language %> ↗</a>
+  <button class="mobile-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+</header>
