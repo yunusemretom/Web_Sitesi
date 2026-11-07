@@ -1,12 +1,28 @@
 (() => {
   // Mobile navigation toggle
   const toggle = document.querySelector('.mobile-nav-toggle');
+  const toggleIcon = document.querySelector('.mobile-nav-icon');
   const nav = document.querySelector('.desktop-nav');
+
+  const setMobileMenuOpen = (isOpen) => {
+    if (!toggle || !nav) return;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    nav.classList.toggle('mobile-open', isOpen);
+    document.body.classList.toggle('mobile-menu-active', isOpen);
+    if (toggleIcon) {
+      toggleIcon.textContent = isOpen ? '✕' : '☰';
+    }
+  };
+
   if (toggle && nav) {
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!open));
-      nav.classList.toggle('mobile-open', !open);
+      setMobileMenuOpen(!open);
+    });
+
+    // Close mobile menu when clicking a navigation link
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setMobileMenuOpen(false));
     });
 
     // Close mobile menu when clicking outside
@@ -16,10 +32,25 @@
         !nav.contains(event.target) &&
         !toggle.contains(event.target)
       ) {
-        toggle.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('mobile-open');
+        setMobileMenuOpen(false);
       }
     });
+
+    // Close mobile menu on Escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.classList.contains('mobile-open')) {
+        setMobileMenuOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Reset mobile menu state if viewport resizes to desktop
+    const desktopMedia = window.matchMedia('(min-width: 769px)');
+    if (desktopMedia.addEventListener) {
+      desktopMedia.addEventListener('change', (e) => {
+        if (e.matches) setMobileMenuOpen(false);
+      });
+    }
   }
 
   // Profile portrait graceful fallback chain:
