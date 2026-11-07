@@ -1,0 +1,26 @@
+{
+  "siteTitle": "Yunus Emre Tom — Engineering & Technology",
+  "siteDescription": "Work across software, embedded systems, electronics and unmanned aerial vehicles.",
+  "nav": { "home": "Home", "about": "About", "projects": "Projects", "competitions": "Competitions", "contact": "Contact", "language": "TR" },
+  "heroEyebrow": "ENGINEERING · SOFTWARE · ROBOTICS",
+  "heroTitle": "Turning ideas into working systems.",
+  "heroText": "Working at the intersection of software, electronics and unmanned aerial systems — researching, designing and building prototypes.",
+  "viewProjects": "Explore projects", "contactMe": "Get in touch",
+  "focusTitle": "Areas of focus", "focusIntro": "From hardware to software, bringing ideas to life.",
+  "focus": [
+    { "title": "Embedded Systems", "text": "Microcontrollers, firmware and hardware-software integration." },
+    { "title": "UAV Systems", "text": "Flight control, autonomy and unmanned aerial systems." },
+    { "title": "Electronics & PCB", "text": "Circuit design, board prototyping and manufacturing workflows." },
+    { "title": "Software & Computer Vision", "text": "Application development, data processing and computer vision." }
+  ],
+  "featuredTitle": "Selected work", "featuredIntro": "Projects documented through their process, technical decisions and learnings.",
+  "allProjects": "All projects", "projectStatus": { "research": "Research / Development", "prototype": "Prototyping", "active": "In progress", "completed": "Completed" },
+  "aboutTitle": "Curiosity first. Prototypes next.",
+  "aboutText": "I study at Ankara Yıldırım Beyazıt University. Within the university's Machine Club, I work around UAV systems and competition teams, with an interest in connecting electronics, embedded software and mechanical design.",
+  "aboutText2": "My interests include flight-control systems, STM32-based board design, PCB prototyping, GNSS signal integrity and software development. I value verifiable results, technical documentation and iterative prototyping.",
+  "competitionsTitle": "Competitions & team projects", "competitionsIntro": "Systems, responsibilities and engineering experience built through teamwork.",
+  "contactTitle": "Let's build something together.", "contactText": "Feel free to reach out about projects, technical collaboration or opportunities.",
+  "email": "Email", "location": "Location", "locationValue": "Ankara, Türkiye", "github": "GitHub profile",
+  "detail": "View project", "backToProjects": "Back to projects", "noProjects": "No published projects yet.",
+  "footer": "All rights reserved.", "adminNote": "Content is managed with Sanity CMS."
+}
