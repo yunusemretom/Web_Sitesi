@@ -11,7 +11,15 @@
     <div class="hero-meta"><span><%= profile.location || t.locationValue %></span><span>·</span><span><%= site.collaborationLabel || (locale === 'tr' ? 'İŞ BİRLİĞİNE AÇIK' : 'OPEN TO COLLABORATION') %></span></div>
   </div>
   <div class="hero-visual" aria-label="Engineering visual">
-    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="visual-core"><span>YT</span><small>ENGINEERING<br>PORTFOLIO</small></div>
+    <div class="orbit orbit-one">
+      <svg class="orbit-svg" viewBox="0 0 340 230" aria-hidden="true"><ellipse class="orbit-trail orbit-trail-cyan" cx="170" cy="115" rx="169" ry="114" pathLength="100"/></svg>
+      <span class="orbit-satellite sat-one" aria-hidden="true"></span>
+    </div>
+    <div class="orbit orbit-two">
+      <svg class="orbit-svg" viewBox="0 0 430 300" aria-hidden="true"><ellipse class="orbit-trail orbit-trail-lime" cx="215" cy="150" rx="214" ry="149" pathLength="100"/></svg>
+      <span class="orbit-satellite sat-two" aria-hidden="true"></span>
+    </div>
+    <div class="visual-core"><span>YT</span><small>ENGINEERING<br>PORTFOLIO</small></div>
     <div class="visual-chip chip-a">EMBEDDED</div><div class="visual-chip chip-b">UAV SYSTEMS</div><div class="visual-chip chip-c">PCB DESIGN</div>
   </div>
 </section>
