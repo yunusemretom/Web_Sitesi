@@ -1,10 +1,23 @@
+<%
+  const computedTitle =
+    (typeof title !== 'undefined' && title) ? title :
+    (typeof project !== 'undefined' && project && project.title) ? (project.title + ' — Yunus Emre Tom') :
+    (typeof page !== 'undefined' && page && page !== 'home' && t && t.nav && t.nav[page]) ? (t.nav[page] + ' — Yunus Emre Tom') :
+    t.siteTitle;
+
+  const computedDescription =
+    (typeof project !== 'undefined' && project && project.summary) ? project.summary :
+    (typeof site !== 'undefined' && site && site.heroText && page === 'home') ? site.heroText :
+    t.siteDescription;
+%>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="<%= t.siteDescription %>">
+<meta name="description" content="<%= computedDescription %>">
 <meta name="theme-color" content="#0b111b">
-<meta property="og:title" content="<%= (typeof title !== 'undefined' && title) ? title : t.siteTitle %>">
-<meta property="og:description" content="<%= t.siteDescription %>">
+<meta property="og:title" content="<%= computedTitle %>">
+<meta property="og:description" content="<%= computedDescription %>">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="<%= locale === 'en' ? 'en_US' : 'tr_TR' %>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
