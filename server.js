@@ -3,24 +3,22 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// View engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1d' }));
 
-// Static files
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Routes
-app.use('/', require('./routes/index'));
+// New bilingual portfolio routes. Legacy routes remain available during migration.
+app.use('/', require('./routes/site'));
 app.use('/about', require('./routes/about'));
 app.use('/projects', require('./routes/projects'));
 app.use('/contact', require('./routes/contact'));
 
-// 404
 app.use((req, res) => {
-  res.status(404).render('404', { page: '404' });
+  res.status(404).send('Page not found');
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Portfolio running at http://localhost:${PORT}`));
+}
+module.exports = app;
