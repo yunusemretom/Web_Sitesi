@@ -1,45 +1,50 @@
-# Portfolio CMS setup
+# Portfolio CMS & GitHub Entegrasyon Rehberi
 
-The public website remains Express + EJS on Vercel. The private content-management application is a separate Sanity Studio under `studio/`; it is not exposed as an unauthenticated route on the public Express server.
+Kamuya açık web sitesi Vercel üzerinde **Express + EJS** mimarisiyle çalışır. İçerik yönetim paneli ise `studio/` dizininde yer alan bağımsız bir **Sanity Studio** uygulamasıdır.
 
-## Sanity project and website
+## 1. Sanity ve GitHub Ortam Değişkenleri (Vercel)
 
-1. Create or select a project at https://www.sanity.io/manage and a dataset named `production`.
-2. Set these variables in the website's Vercel project:
-   - `SANITY_PROJECT_ID`
-   - `SANITY_DATASET=production`
-   - optional `SANITY_API_VERSION=2025-01-01`
-   - `SANITY_API_READ_TOKEN` only if the dataset is private. Use a read-only token and keep it server-side.
+Web sitesinin bağlı olduğu Vercel projesine (`Settings -> Environment Variables`) şu değişkenleri ekleyin:
 
-## Run the management panel locally
+- `SANITY_PROJECT_ID=0j1jarsg` (Zorunlu)
+- `SANITY_DATASET=production` (Zorunlu)
+- `SANITY_API_VERSION=2025-01-01` (Opsiyonel, varsayılan: `2025-01-01`)
+- `SANITY_API_READ_TOKEN` (Opsiyonel — yalnızca Sanity dataset gizli/private yapılırsa salt-okunur token gerekir)
+- `GITHUB_USERNAME=yunusemretom` (Opsiyonel, varsayılan: `yunusemretom`)
+- `GITHUB_TOKEN` (Opsiyonel — herkese açık depolar için zorunlu değildir; yalnızca GitHub API saatlik istek limitini 60'tan 5000'e çıkarmak isterseniz yalnızca backend ortam değişkeni olarak ekleyin)
+- `GITHUB_CACHE_TTL_SECONDS=900` (Opsiyonel — GitHub API önbellek süresi, varsayılan 900 sn / 15 dk)
 
-```bash
-cd studio
-npm install
-SANITY_STUDIO_PROJECT_ID=your_project_id SANITY_STUDIO_DATASET=production npm run dev
-```
+> **Güvenlik Notu:** Hiçbir yazma tokenı (`write token`) veya `GITHUB_TOKEN` değeri frontend tarafına gönderilmez; tamamı yalnızca sunucu tarafında okunur.
 
-Sign in with your Sanity account. Access is controlled by Sanity project membership and roles, not by a shared password in the website.
+## 2. Yönetim Panelini (Sanity Studio) Çalıştırma ve Yayınlama
 
-## Deploy the management panel
+Yerel ortamda çalıştırmak için:
 
 ```bash
 cd studio
 npm install
-SANITY_STUDIO_PROJECT_ID=your_project_id SANITY_STUDIO_DATASET=production npm run build
-SANITY_STUDIO_PROJECT_ID=your_project_id SANITY_STUDIO_DATASET=production npm run deploy
+SANITY_STUDIO_PROJECT_ID=0j1jarsg SANITY_STUDIO_DATASET=production npm run dev
 ```
 
-Sanity CLI provides a hosted `*.sanity.studio` URL. Configure `studio.yunusemretom.me` as a custom Studio hostname in Sanity hosting/domain settings, then add the exact CNAME target shown by Sanity to your DNS provider. Do not guess the DNS target.
+Sanity Studio'yu derlemek ve yayınlamak için:
 
-## Draft -> review -> publish
+```bash
+cd studio
+npm install
+SANITY_STUDIO_PROJECT_ID=0j1jarsg SANITY_STUDIO_DATASET=production npm run build
+SANITY_STUDIO_PROJECT_ID=0j1jarsg SANITY_STUDIO_DATASET=production npm run deploy
+```
 
-Documents start as drafts. Review Turkish and English content, imagery, technical details and links in Studio; publish only when ready. The public website queries published documents only. The first implementation uses Sanity's built-in draft/publish workflow. A visual on-site draft preview is a follow-up: it requires a signed preview endpoint and draft-aware Sanity queries, and is deliberately not exposed without that security layer.
+## 3. Profil Fotoğrafı Nasıl Değiştirilir?
 
-## Content types
+1. Sanity Studio sol menüsünden **"Profil ve Fotoğraf Yönetimi"** bölümüne tıklayın.
+2. **"2. Profil Fotoğrafı ve Özgeçmiş (CV)"** sekmesine geçin.
+3. **"Profil Fotoğrafı (Hakkımda Sayfası)"** alanından yeni fotoğrafınızı yükleyin (Önerilen boyut: **1200 × 1500 px**, dikey **4:5** oran, JPG/PNG/WebP).
+4. Görsel üzerindeki **"Crop / Hotspot"** simgesine tıklayarak yuvarlak odak noktasını yüz hizasına getirin.
+5. Sağ alttaki **Publish** butonuna basın. Web sitesi fotoğrafı doğrudan Sanity üzerinden çeker; görsel yüklenemezse yerel yedek (`/imgs/profile.png`) ve monogram (`YT`) devreye girer.
 
-- Projects: bilingual title, summary, description, contribution, technologies, stage, images, links, featured flag and ordering.
-- Competitions: bilingual title, description and role, year, result and ordering.
-- Profile: bilingual headline and biography, portrait, CV, skills and education.
+## 4. GitHub ve Manuel Projelerin Yönetimi
 
-Until Sanity credentials are configured in Vercel, the website uses local sample content. Review every claim before publishing. Never commit API tokens or secrets.
+- **GitHub & Proje Seçimi sekmesi:** Sanity Studio üst barındaki **"GitHub & Proje Seçimi"** aracından `yunusemretom` GitHub hesabınızdaki depoları listeleyebilir, istediğiniz depoyu tek tıkla portfolyoya ekleyebilir, gizleyebilir (`Gizle`), ana sayfada öne çıkarabilir (`★ Öne Çıkan`) ve sıra numarasını (`Sıra`) değiştirebilirsiniz.
+- **Kişisel düzenlemelerin korunması:** Bir GitHub deposu için Sanity'de özel başlık, özel açıklama veya kapak görseli girdiğinizde web sitesinde sizin girdiğiniz bilgiler gösterilir; GitHub senkronizasyonu kişisel metinlerinizin üzerine yazmaz.
+- **Manuel projeler:** GitHub'da olmayan projelerinizi (**NÖBETÇİ**, **Uçuş Kontrol Kartı**, **İHA Sistemleri** vb.) **"Projeler"** menüsünden `Proje kaynağı: Manuel Proje` seçerek ekleyebilirsiniz.
