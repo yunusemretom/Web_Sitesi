@@ -187,6 +187,76 @@ export default function GitHubProjectManagerTool() {
     }
   };
 
+  const syncAllMissingRepos = async () => {
+    setBusyId('sync-all');
+    setStatusMsg('');
+    try {
+      const existingNames = new Set(
+        sanityProjects.map(p => String(p.githubRepo || '').toLowerCase()).filter(Boolean)
+      );
+      let addedCount = 0;
+      let orderCounter = 100;
+      for (const repo of ghRepos) {
+        if (existingNames.has(repo.name.toLowerCase())) continue;
+        const isForkOrMeta =
+          Boolean(repo.fork) ||
+          Boolean(repo.archived) ||
+          repo.name.toLowerCase() === 'yunusemretom' ||
+          repo.name.toLowerCase() === 'yunusemretom.github.io';
+        const slug = slugify(repo.name);
+        await client.createIfNotExists({
+          _id: `project-github-${slug}`,
+          _type: 'project',
+          sourceType: 'github',
+          githubRepo: repo.name,
+          slug: { _type: 'slug', current: slug },
+          status: isForkOrMeta ? 'hidden' : 'published',
+          hidden: isForkOrMeta,
+          featured: false,
+          order: isForkOrMeta ? 300 + orderCounter : orderCounter,
+          stage: 'active',
+          includeIfForkOrArchived: false,
+          showGithubLink: true,
+          category: repo.language || (repo.fork ? 'Fork / Open Source' : 'Software'),
+          title: {
+            tr: repo.name.replace(/[-_]+/g, ' '),
+            en: repo.name.replace(/[-_]+/g, ' ')
+          },
+          summary: {
+            tr: repo.description || '',
+            en: repo.description || ''
+          },
+          technologies: Array.from(new Set([repo.language, ...(repo.topics || [])].filter(Boolean))),
+          repositoryUrl: repo.html_url,
+          demoUrl: repo.homepage || undefined,
+          githubData: {
+            repoName: repo.name,
+            description: repo.description || '',
+            htmlUrl: repo.html_url,
+            homepage: repo.homepage || '',
+            language: repo.language || '',
+            stars: repo.stargazers_count || 0,
+            forks: repo.forks_count || 0,
+            topics: Array.isArray(repo.topics) ? repo.topics : [],
+            updatedAt: repo.updated_at || null
+          }
+        });
+        orderCounter += 10;
+        addedCount++;
+      }
+      setStatusMsg(
+        addedCount > 0
+          ? `${addedCount} yeni GitHub deposu Sanity Projeler listesine otomatik aktarıldı.`
+          : 'Tüm GitHub depolarınız zaten Sanity Projeler listesinde mevcut.'
+      );
+      await fetchData();
+    } catch (err) {
+      setStatusMsg(`Toplu aktarım hatası: ${err.message}`);
+    } finally {
+      setBusyId(null);
+    }
+  };
+
   const seedManualProjects = async () => {
     setBusyId('seed-manual');
     try {
@@ -222,7 +292,24 @@ export default function GitHubProjectManagerTool() {
             GitHub hesabınızdaki (<strong>{GITHUB_USER}</strong>) depoları buradan seçip portfolyoya ekleyebilir, gizleyebilir, öne çıkarabilir ve sıralayabilirsiniz.
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <button
+            type="button"
+            onClick={syncAllMissingRepos}
+            disabled={busyId === 'sync-all'}
+            style={{
+              padding: '8px 14px',
+              background: '#c5e478',
+              color: '#07131b',
+              border: 'none',
+              borderRadius: '4px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontSize: '13px'
+            }}
+          >
+            Tüm GitHub Depolarını Otomatik Aktar
+          </button>
           <button
             type="button"
             onClick={seedManualProjects}
@@ -495,3 +582,4 @@ export default function GitHubProjectManagerTool() {
     </div>
   );
 }
+

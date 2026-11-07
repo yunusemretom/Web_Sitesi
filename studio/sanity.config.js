@@ -12,13 +12,19 @@ const deskStructure = S =>
   S.list()
     .title('Portfolyo İçerik Yönetimi')
     .items([
-      S.documentTypeListItem('profile').title('Profil ve Fotoğraf Yönetimi'),
-      S.documentTypeListItem('siteSettings').title('Ana Sayfa, Metinler ve İletişim'),
+      S.listItem()
+        .id('github-sync')
+        .title('⚡ GitHub Depoları ve Otomatik Aktarım')
+        .child(
+          S.component(GitHubProjectManagerTool)
+            .id('github-manager-pane')
+            .title('GitHub & Portfolyo Proje Yöneticisi')
+        ),
       S.divider(),
       S.documentTypeListItem('project').title('Projeler (Tümü)'),
       S.listItem()
         .id('published-projects')
-        .title('Yayındaki Projeler')
+        .title('Yayındaki Projeler (Sitede Görünenler)')
         .schemaType('project')
         .child(
           S.documentList()
@@ -38,14 +44,16 @@ const deskStructure = S =>
         ),
       S.listItem()
         .id('hidden-projects')
-        .title('Gizlenen Projeler')
+        .title('Gizlenen / Fork Projeler')
         .schemaType('project')
         .child(
           S.documentList()
             .title('Gizlenen Projeler')
-            .filter('_type == "project" && (hidden == true || status == "hidden")')
+            .filter('_type == "project" && (hidden == true || status == "hidden" || status == "draft")')
         ),
       S.divider(),
+      S.documentTypeListItem('profile').title('Profil ve Fotoğraf Yönetimi'),
+      S.documentTypeListItem('siteSettings').title('Ana Sayfa, Metinler ve Ayarlar'),
       S.documentTypeListItem('competition').title('Yarışmalar')
     ]);
 

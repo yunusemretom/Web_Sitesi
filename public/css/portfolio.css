@@ -290,6 +290,9 @@ body.portfolio-v2 {
 .orbit-one {
   width: 340px;
   height: 230px;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: orbitGentleSwayOne 14s ease-in-out infinite;
+  }
 }
 
 .orbit-two {
@@ -297,6 +300,9 @@ body.portfolio-v2 {
   height: 300px;
   transform: rotate(38deg);
   border-color: rgba(197, 228, 120, 0.16);
+  @media (prefers-reduced-motion: no-preference) {
+    animation: orbitGentleSwayTwo 18s ease-in-out infinite;
+  }
 }
 
 .visual-core {
@@ -374,6 +380,21 @@ body.portfolio-v2 {
   }
 }
 
+@keyframes orbitGentleSwayOne {
+  0%, 100% { transform: rotate(-24deg) scale(1); }
+  50% { transform: rotate(-19deg) scale(1.015); }
+}
+
+@keyframes orbitGentleSwayTwo {
+  0%, 100% { transform: rotate(38deg) scale(1); }
+  50% { transform: rotate(33deg) scale(1.015); }
+}
+
+@keyframes chipGentleFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+
 .visual-chip {
   position: absolute;
   z-index: 3;
@@ -384,6 +405,9 @@ body.portfolio-v2 {
   font: 9px var(--v2-display);
   letter-spacing: 0.13em;
   transition: border-color 0.2s ease, color 0.2s ease;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: chipGentleFloat 6s ease-in-out infinite;
+  }
 }
 
 .visual-chip:hover {
@@ -399,11 +423,13 @@ body.portfolio-v2 {
 .chip-b {
   right: 0;
   top: 150px;
+  animation-delay: -2s;
 }
 
 .chip-c {
   bottom: 45px;
   left: 42px;
+  animation-delay: -4s;
 }
 
 /* Capabilities & Projects Sections */

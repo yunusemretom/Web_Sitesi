@@ -35,7 +35,8 @@ export default defineType({
     { name: 'hero', title: '1. Ana Sayfa & Hero Alanı', default: true },
     { name: 'focus', title: '2. Çalışma Alanları & Öne Çıkanlar' },
     { name: 'pages', title: '3. Hakkımda & Yarışmalar Başlıkları' },
-    { name: 'contact', title: '4. İletişim & Sosyal Bağlantılar' }
+    { name: 'contact', title: '4. İletişim & Sosyal Bağlantılar' },
+    { name: 'github', title: '5. GitHub Entegrasyon Ayarları' }
   ],
   fields: [
     { ...bilingual('heroEyebrow', 'Ana sayfa üst etiketi (TR / EN)'), group: 'hero' },
@@ -94,6 +95,31 @@ export default defineType({
           ]
         }
       ]
+    }),
+
+    defineField({
+      name: 'githubUsername',
+      title: 'GitHub Kullanıcı Adı',
+      description: 'Depoların çekileceği GitHub hesabı (Varsayılan: yunusemretom).',
+      type: 'string',
+      group: 'github',
+      initialValue: 'yunusemretom'
+    }),
+    defineField({
+      name: 'githubAutoImport',
+      title: 'Yeni GitHub depolarını Studio açıldığında otomatik aktar',
+      description: 'Açık olduğunda GitHub hesabınıza eklediğiniz yeni depolar Sanity Projeler listesine otomatik aktarılır.',
+      type: 'boolean',
+      group: 'github',
+      initialValue: true
+    }),
+    defineField({
+      name: 'githubIncludeForksByDefault',
+      title: 'Fork edilmiş depoları varsayılan olarak gizle',
+      description: 'Açık olduğunda fork depolar Sanity listesine "Gizli" olarak aktarılır; istediğiniz fork depoyu Projeler listesinden tek tıkla "Yayında" yapabilirsiniz.',
+      type: 'boolean',
+      group: 'github',
+      initialValue: true
     })
   ],
   preview: {
