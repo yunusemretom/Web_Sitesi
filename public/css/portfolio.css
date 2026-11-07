@@ -31,8 +31,12 @@ body.portfolio-v2 {
   mask-image: linear-gradient(to bottom, black, transparent 80%);
 }
 
+.portfolio-v2 header {
+  position: relative;
+  z-index: 300;
+}
+
 .portfolio-v2 main,
-.portfolio-v2 header,
 .portfolio-v2 footer {
   position: relative;
   z-index: 1;
@@ -1146,25 +1150,26 @@ a.contact-card:hover {
     top: calc(100% + 1px);
     left: 0;
     right: 0;
-    z-index: 50;
-    padding: 12px 18px 16px;
-    background: rgba(16, 28, 42, 0.98);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(83, 199, 223, 0.24);
-    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.6);
+    z-index: 350;
+    padding: 14px 20px 18px;
+    background: #0d1622;
+    border: 1px solid rgba(83, 199, 223, 0.38);
+    box-shadow: 0 28px 64px rgba(0, 0, 0, 0.92), 0 0 0 100vmax rgba(5, 9, 15, 0.62);
     flex-direction: column;
     align-items: stretch;
-    gap: 0;
+    gap: 2px;
   }
   .desktop-nav.mobile-open a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-block-size: 46px;
-    padding: 10px 6px;
-    font-size: 14px;
-    font-weight: 500;
-    border-bottom: 1px solid var(--v2-line);
+    min-block-size: 48px;
+    padding: 12px 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--v2-text);
+    background: #0d1622;
+    border-bottom: 1px solid rgba(190, 211, 233, 0.14);
   }
   .desktop-nav.mobile-open a:last-child {
     border-bottom: 0;
@@ -1172,9 +1177,11 @@ a.contact-card:hover {
   .desktop-nav.mobile-open a::after {
     display: none;
   }
+  .desktop-nav.mobile-open a:hover,
   .desktop-nav.mobile-open a.active {
     color: var(--v2-cyan);
-    padding-left: 12px;
+    background: #132234;
+    padding-left: 14px;
     border-left: 2px solid var(--v2-cyan);
   }
 }
