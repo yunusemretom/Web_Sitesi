@@ -2,7 +2,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { schemaTypes } from './schemas';
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || '0j1jarsg';
 if (!projectId) {
   throw new Error('Missing SANITY_STUDIO_PROJECT_ID. Configure the Studio environment before starting or building.');
 }
