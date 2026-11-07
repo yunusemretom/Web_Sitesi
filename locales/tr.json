@@ -1,0 +1,26 @@
+{
+  "siteTitle": "Yunus Emre Tom — Mühendislik ve Teknoloji",
+  "siteDescription": "Yazılım, gömülü sistemler, elektronik ve insansız hava araçları üzerine çalışmalar.",
+  "nav": { "home": "Ana Sayfa", "about": "Hakkımda", "projects": "Projeler", "competitions": "Yarışmalar", "contact": "İletişim", "language": "EN" },
+  "heroEyebrow": "MÜHENDİSLİK · YAZILIM · ROBOTİK",
+  "heroTitle": "Fikirleri çalışan sistemlere dönüştürüyorum.",
+  "heroText": "Yazılım, elektronik ve insansız hava araçlarının kesişiminde; araştırıyor, tasarlıyor ve prototip geliştiriyorum.",
+  "viewProjects": "Projeleri keşfet", "contactMe": "İletişime geç",
+  "focusTitle": "Çalışma alanlarım", "focusIntro": "Bir fikrin donanımdan yazılıma uzanan yolculuğu.",
+  "focus": [
+    { "title": "Gömülü Sistemler", "text": "Mikrodenetleyiciler, firmware ve donanım-yazılım entegrasyonu." },
+    { "title": "İHA Sistemleri", "text": "Uçuş kontrolü, otonomi ve insansız hava aracı sistemleri." },
+    { "title": "Elektronik & PCB", "text": "Devre tasarımı, kart prototipleme ve üretim süreçleri." },
+    { "title": "Yazılım & Görüntü İşleme", "text": "Uygulama geliştirme, veri işleme ve bilgisayarlı görü." }
+  ],
+  "featuredTitle": "Öne çıkan çalışmalar", "featuredIntro": "Süreçleri, teknik kararları ve öğrenimleriyle birlikte.",
+  "allProjects": "Tüm projeler", "projectStatus": { "research": "Araştırma / Geliştirme", "prototype": "Prototipleme", "active": "Aktif çalışma", "completed": "Tamamlandı" },
+  "aboutTitle": "Merakla başlar, prototiple ilerler.",
+  "aboutText": "Ankara Yıldırım Beyazıt Üniversitesi'nde öğrenim görüyorum. Makine Kulübü bünyesinde insansız hava araçları ve yarışma takımları çevresinde çalışıyor; elektronik, gömülü yazılım ve mekanik sistemleri birlikte ele almayı seviyorum.",
+  "aboutText2": "İlgi alanlarım; uçuş kontrol sistemleri, STM32 tabanlı kart tasarımı, PCB prototipleme, GNSS sinyal güvenilirliği ve yazılım geliştirme. Çalışmalarımda doğrulanabilir sonuçlara, teknik dokümantasyona ve iteratif prototiplemeye önem veriyorum.",
+  "competitionsTitle": "Yarışmalar ve takım çalışmaları", "competitionsIntro": "Takım içinde geliştirilen sistemler, görevler ve mühendislik deneyimi.",
+  "contactTitle": "Birlikte bir şey geliştirelim.", "contactText": "Proje, teknik iş birliği veya fırsatlar hakkında iletişime geçebilirsin.",
+  "email": "E-posta", "location": "Konum", "locationValue": "Ankara, Türkiye", "github": "GitHub profili",
+  "detail": "Çalışmayı incele", "backToProjects": "Projelere dön", "noProjects": "Henüz yayınlanmış proje bulunmuyor.",
+  "footer": "Tüm hakları saklıdır.", "adminNote": "İçerikler Sanity CMS üzerinden yönetilir."
+}
