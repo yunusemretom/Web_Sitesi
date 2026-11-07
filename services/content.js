@@ -70,7 +70,18 @@ async function getProfile(locale) {
 }
 async function getSiteContent(locale) {
   const remote = await query('*[_type == "siteSettings"][0] { heroEyebrow, heroTitle, heroText, homeFocus, focusTitle, focusIntro, featuredTitle, featuredIntro, aboutTitle, approachTitle, approachSteps, competitionsTitle, competitionsIntro, contactTitle, contactText, collaborationLabel, githubUrl, linkedinUrl }');
-  if (!remote) return {};
+  if (!remote) return {
+    approachTitle: locale === 'tr' ? 'Nasıl çalışıyorum?' : 'How I work',
+    approachSteps: locale === 'tr' ? [
+      { title: 'Araştır', text: 'Problemi, gereksinimleri ve kısıtları anlamlandır.' },
+      { title: 'Prototiple', text: 'Fikirleri ölçülebilir ve test edilebilir sistemlere dönüştür.' },
+      { title: 'İyileştir', text: 'Test sonuçları ve dokümantasyonla tasarımı geliştir.' }
+    ] : [
+      { title: 'Research', text: 'Understand the problem, requirements and constraints.' },
+      { title: 'Prototype', text: 'Turn ideas into measurable and testable systems.' },
+      { title: 'Iterate', text: 'Improve the design through test results and documentation.' }
+    ]
+  };
   return {
     ...remote,
     heroEyebrow: localized(remote.heroEyebrow, locale),
