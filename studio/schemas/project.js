@@ -4,23 +4,23 @@ const bilingual = (name, title, type = 'text') => defineField({ name, title, typ
   { name: 'en', title: 'English', type }
 ] });
 export default defineType({
-  name: 'project', title: 'Projects', type: 'document',
+  name: 'project', title: 'Projeler', type: 'document',
   fields: [
-    bilingual('title', 'Title', 'string'),
-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title.tr', maxLength: 96 } }),
-    bilingual('summary', 'Summary'),
-    bilingual('description', 'Description'),
-    bilingual('contribution', 'My contribution'),
-    defineField({ name: 'category', title: 'Category', type: 'string' }),
-    defineField({ name: 'technologies', title: 'Technologies', type: 'array', of: [{ type: 'string' }] }),
-    defineField({ name: 'status', title: 'Publication status', type: 'string', options: { list: [{ title: 'Draft', value: 'draft' }, { title: 'Published', value: 'published' }] }, initialValue: 'draft' }),
-    defineField({ name: 'stage', title: 'Project stage', type: 'string', options: { list: ['research','prototype','active','completed'].map(value => ({ title: value, value })) } }),
-    defineField({ name: 'featured', title: 'Show on homepage', type: 'boolean', initialValue: false }),
-    defineField({ name: 'order', title: 'Display order', type: 'number', initialValue: 100 }),
-    defineField({ name: 'coverImage', title: 'Cover image', type: 'image', options: { hotspot: true } }),
-    defineField({ name: 'gallery', title: 'Gallery', type: 'array', of: [{ type: 'image', options: { hotspot: true } }] }),
-    defineField({ name: 'repositoryUrl', title: 'Repository URL', type: 'url' }),
-    defineField({ name: 'demoUrl', title: 'Demo URL', type: 'url' })
+    bilingual('title', 'Proje başlığı', 'string'),
+    defineField({ name: 'slug', title: 'URL kısa adı', type: 'slug', options: { source: 'title.tr', maxLength: 96 } }),
+    bilingual('summary', 'Kısa açıklama'),
+    bilingual('description', 'Detaylı açıklama'),
+    bilingual('contribution', 'Projede yaptığım çalışma'),
+    defineField({ name: 'category', title: 'Kategori', type: 'string' }),
+    defineField({ name: 'technologies', title: 'Teknolojiler / yetkinlikler', type: 'array', of: [{ type: 'string' }] }),
+    defineField({ name: 'status', title: 'Yayın durumu', type: 'string', options: { list: [{ title: 'Taslak', value: 'draft' }, { title: 'Yayında', value: 'published' }] }, initialValue: 'draft' }),
+    defineField({ name: 'stage', title: 'Proje aşaması', type: 'string', options: { list: ['research','prototype','active','completed'].map(value => ({ title: value, value })) } }),
+    defineField({ name: 'featured', title: 'Ana sayfada göster', type: 'boolean', initialValue: false }),
+    defineField({ name: 'order', title: 'Görüntülenme sırası', type: 'number', initialValue: 100 }),
+    defineField({ name: 'coverImage', title: 'Kapak görseli', type: 'image', options: { hotspot: true } }),
+    defineField({ name: 'gallery', title: 'Proje galeri görselleri', type: 'array', of: [{ type: 'image', options: { hotspot: true } }] }),
+    defineField({ name: 'repositoryUrl', title: 'Kod deposu bağlantısı', type: 'url' }),
+    defineField({ name: 'demoUrl', title: 'Demo bağlantısı', type: 'url' })
   ],
   preview: { select: { title: 'title.tr', subtitle: 'category', media: 'coverImage' } }
 });
