@@ -18,6 +18,12 @@ app.use((req, res) => {
   res.status(404).send('Page not found');
 });
 
+app.use((err, req, res, next) => {
+  console.error('[server] Unhandled error:', err && err.message ? err.message : err);
+  if (res.headersSent) return next(err);
+  res.status(500).send('Something went wrong. Please try again later.');
+});
+
 if (require.main === module) {
   app.listen(PORT, () => console.log(`Portfolio running at http://localhost:${PORT}`));
 }

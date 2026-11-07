@@ -1,1 +1,74 @@
-<!doctype html><html lang="<%= locale %>"><head><%- include('../partials/portfolio-head') %><title><%= project.title %> — Yunus Emre Tom</title></head><body class="portfolio-v2"><%- include('../partials/portfolio-nav') %><main class="shell inner-page"><a class="back-link" href="<%= routeFor('projects', locale) %>">← <%= t.backToProjects %></a><p class="eyebrow">PROJECT / <%= project.category || 'ENGINEERING' %></p><h1 class="page-title"><%= project.title %></h1><p class="page-intro"><%= project.summary %></p><section class="detail-panel"><h2><%= locale === 'tr' ? 'Çalışmanın kapsamı' : 'Project overview' %></h2><p><%= project.contribution || project.description || project.summary %></p><% if (project.technologies && project.technologies.length) { %><h3><%= locale === 'tr' ? 'Teknolojiler ve alanlar' : 'Technologies & domains' %></h3><div class="tag-list"><% project.technologies.forEach(tag => { %><span><%= tag %></span><% }) %></div><% } %></section></main><%- include('../partials/portfolio-footer') %></body></html>
+<!doctype html>
+<html lang="<%= locale %>">
+<head>
+  <%- include('../partials/portfolio-head') %>
+  <title><%= project.title %> — Yunus Emre Tom</title>
+</head>
+<body class="portfolio-v2">
+<%- include('../partials/portfolio-nav') %>
+<main class="shell inner-page">
+  <a class="back-link" href="<%= routeFor('projects', locale) %>">← <%= t.backToProjects %></a>
+  <p class="eyebrow">
+    <%= project.sourceType === 'github' ? 'GITHUB' : (locale === 'tr' ? 'PROJE' : 'PROJECT') %><%= project.category ? ' / ' + project.category : '' %>
+  </p>
+  <h1 class="page-title"><%= project.title %></h1>
+  <% if (project.summary) { %>
+    <p class="page-intro"><%= project.summary %></p>
+  <% } %>
+
+  <% if (project.coverImageUrl) { %>
+    <div class="project-detail-cover">
+      <img
+        src="<%= project.coverImageUrl %>"
+        alt="<%= project.title %>"
+        loading="lazy"
+        style="width:100%;height:auto;object-fit:cover;object-position:<%= project.coverObjectPosition || '50% 50%' %>"
+      >
+    </div>
+  <% } %>
+
+  <section class="detail-panel">
+    <h2><%= locale === 'tr' ? 'Çalışmanın kapsamı' : 'Project overview' %></h2>
+    <% if (project.description) { %>
+      <p><%= project.description %></p>
+    <% } else if (project.summary) { %>
+      <p><%= project.summary %></p>
+    <% } %>
+
+    <% if (project.contribution && project.contribution !== project.description) { %>
+      <h3><%= locale === 'tr' ? 'Teknik katkı ve süreç' : 'Technical contribution' %></h3>
+      <p><%= project.contribution %></p>
+    <% } %>
+
+    <% if (project.technologies && project.technologies.length) { %>
+      <h3><%= locale === 'tr' ? 'Teknolojiler ve alanlar' : 'Technologies & domains' %></h3>
+      <div class="tag-list">
+        <% project.technologies.forEach(tag => { %>
+          <span><%= tag %></span>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <% if (project.repositoryUrl || project.demoUrl) { %>
+      <div class="hero-actions">
+        <% if (project.repositoryUrl) { %>
+          <a class="button-quiet" href="<%= project.repositoryUrl %>" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <% } %>
+        <% if (project.demoUrl) { %>
+          <a class="button-primary" href="<%= project.demoUrl %>" target="_blank" rel="noopener noreferrer">Demo <span>↗</span></a>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+
+  <% if (project.galleryUrls && project.galleryUrls.length) { %>
+    <div class="project-gallery">
+      <% project.galleryUrls.forEach(url => { %>
+        <img src="<%= url %>" alt="<%= project.title %>" loading="lazy" style="max-width:100%;height:auto">
+      <% }) %>
+    </div>
+  <% } %>
+</main>
+<%- include('../partials/portfolio-footer') %>
+</body>
+</html>

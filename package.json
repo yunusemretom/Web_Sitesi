@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "echo \"No tests\" && exit 0"
+    "test": "node tests/portfolio.test.js"
   },
   "repository": {
     "type": "git",

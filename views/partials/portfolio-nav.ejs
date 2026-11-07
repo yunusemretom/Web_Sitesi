@@ -1,10 +1,19 @@
+<div class="scroll-progress" id="progress" aria-hidden="true"></div>
 <header class="site-nav">
   <a class="brand" href="<%= routeFor('home', locale) %>"><span class="brand-mark">YT</span><span>yunusemretom<span class="brand-dot">.</span></span></a>
-  <nav class="desktop-nav" aria-label="Primary navigation">
+  <nav class="desktop-nav" id="primary-nav" aria-label="<%= locale === 'tr' ? 'Ana menü' : 'Primary' %>">
     <% ['home','about','projects','competitions','contact'].forEach(key => { %>
       <a class="<%= page === key ? 'active' : '' %>" href="<%= routeFor(key, locale) %>"><%= t.nav[key] %></a>
     <% }) %>
   </nav>
-  <a class="language-switch" href="<%= routeFor(page, locale === 'tr' ? 'en' : 'tr') %>" lang="<%= locale === 'tr' ? 'en' : 'tr' %>"><%= t.nav.language %> ↗</a>
-  <button class="mobile-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+  <div class="nav-Utilities">
+    <a class="language-switch" href="<%= routeFor(page, locale === 'tr' ? 'en' : 'tr') %>" lang="<%= locale === 'tr' ? 'en' : 'tr' %>"><%= t.nav.language %> ↗</a>
+    <button
+      class="mobile-nav-toggle"
+      type="button"
+      aria-label="<%= locale === 'tr' ? 'Menüyü aç veya kapat' : 'Toggle menu' %>"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    ><span class="mobile-nav-icon" aria-hidden="true">☰</span></button>
+  </div>
 </header>

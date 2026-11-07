@@ -1,3 +1,26 @@
-<!doctype html><html lang="<%= locale %>"><head><%- include('../partials/portfolio-head') %><title><%= t.nav.projects %> — Yunus Emre Tom</title></head><body class="portfolio-v2"><%- include('../partials/portfolio-nav') %><main class="shell inner-page"><p class="eyebrow">02 / SELECTED WORK</p><h1 class="page-title"><%= t.nav.projects %><span class="title-period">.</span></h1><p class="page-intro"><%= t.featuredIntro %></p>
-<% if (projects.length) { %><div class="project-grid all-projects"><% projects.forEach((project, i) => { %><a class="project-tile" href="<%= routeFor('projects', locale) %>/<%= project.slug %>"><div class="tile-top"><span>0<%= i + 1 %> / PROJECT</span><span><%= project.category || 'ENGINEERING' %></span></div><div class="tile-art"><div class="tile-art-lines"></div><span><%= project.category || 'SYSTEM' %></span></div><h3><%= project.title %></h3><p><%= project.summary %></p><div class="tile-bottom"><span><%= t.projectStatus[project.status] || project.status %></span><span>↗</span></div></a><% }) %></div><% } else { %><p><%= t.noProjects %></p><% } %>
-</main><%- include('../partials/portfolio-footer') %></body></html>
+<!doctype html>
+<html lang="<%= locale %>">
+<head>
+  <%- include('../partials/portfolio-head') %>
+  <title><%= t.nav.projects %> — Yunus Emre Tom</title>
+</head>
+<body class="portfolio-v2">
+<%- include('../partials/portfolio-nav') %>
+<main class="shell inner-page">
+  <p class="eyebrow">02 / <%= locale === 'tr' ? 'SEÇİLİ ÇALIŞMALAR' : 'SELECTED WORK' %></p>
+  <h1 class="page-title"><%= t.nav.projects %><span class="title-period">.</span></h1>
+  <p class="page-intro"><%= site.featuredIntro || t.featuredIntro %></p>
+
+  <% if (projects && projects.length) { %>
+    <div class="project-grid all-projects">
+      <% projects.forEach((project, index) => { %>
+        <%- include('../partials/project-card', { project, index, locale, t, routeFor }) %>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p><%= t.noProjects %></p>
+  <% } %>
+</main>
+<%- include('../partials/portfolio-footer') %>
+</body>
+</html>
