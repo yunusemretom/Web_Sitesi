@@ -12,30 +12,12 @@ const deskStructure = S =>
   S.list()
     .title('Portfolyo İçerik Yönetimi')
     .items([
-      S.listItem()
-        .title('Profil ve Fotoğraf Yönetimi')
-        .id('profile-singleton')
-        .child(
-          S.documentTypeList('profile')
-            .title('Profil ve Özgeçmiş')
-        ),
-      S.listItem()
-        .title('Ana Sayfa, Metinler ve İletişim')
-        .id('site-settings-singleton')
-        .child(
-          S.documentTypeList('siteSettings')
-            .title('Site Metinleri ve İletişim Ayarları')
-        ),
+      S.documentTypeListItem('profile').title('Profil ve Fotoğraf Yönetimi'),
+      S.documentTypeListItem('siteSettings').title('Ana Sayfa, Metinler ve İletişim'),
       S.divider(),
+      S.documentTypeListItem('project').title('Projeler (Tümü)'),
       S.listItem()
-        .title('Projeler (Tümü)')
-        .schemaType('project')
-        .child(
-          S.documentTypeList('project')
-            .title('Tüm Projeler')
-            .defaultOrdering([{ field: 'order', direction: 'asc' }])
-        ),
-      S.listItem()
+        .id('published-projects')
         .title('Yayındaki Projeler')
         .schemaType('project')
         .child(
@@ -45,6 +27,7 @@ const deskStructure = S =>
             .defaultOrdering([{ field: 'order', direction: 'asc' }])
         ),
       S.listItem()
+        .id('featured-projects')
         .title('Ana Sayfada Öne Çıkan Projeler')
         .schemaType('project')
         .child(
@@ -54,6 +37,7 @@ const deskStructure = S =>
             .defaultOrdering([{ field: 'order', direction: 'asc' }])
         ),
       S.listItem()
+        .id('hidden-projects')
         .title('Gizlenen Projeler')
         .schemaType('project')
         .child(
@@ -62,14 +46,7 @@ const deskStructure = S =>
             .filter('_type == "project" && (hidden == true || status == "hidden")')
         ),
       S.divider(),
-      S.listItem()
-        .title('Yarışmalar')
-        .schemaType('competition')
-        .child(
-          S.documentTypeList('competition')
-            .title('Yarışmalar')
-            .defaultOrdering([{ field: 'order', direction: 'asc' }])
-        )
+      S.documentTypeListItem('competition').title('Yarışmalar')
     ]);
 
 export default defineConfig({
