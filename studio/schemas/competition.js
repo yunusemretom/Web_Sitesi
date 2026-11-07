@@ -1,25 +1,17 @@
 import { defineType, defineField } from 'sanity';
-
-const bilingual = (name, title, type = 'text') => defineField({
-  name, title, type: 'object',
-  fields: [
-    defineField({ name: 'tr', title: 'Türkçe', type, validation: Rule => Rule.required() }),
-    defineField({ name: 'en', title: 'English', type, validation: Rule => Rule.required() })
-  ]
-});
-
 export default defineType({
-  name: 'competition',
-  title: 'Yarışmalar',
-  type: 'document',
+  name: 'competition', title: 'Yarışmalar', type: 'document',
   fields: [
-    bilingual('title', 'Yarışma adı', 'string'),
-    bilingual('description', 'Açıklama'),
-    defineField({ name: 'year', title: 'Yıl', type: 'number', validation: Rule => Rule.min(2000).max(2100) }),
-    bilingual('role', 'Takımdaki / kişisel rolüm', 'string'),
-    defineField({ name: 'result', title: 'Sonuç / derece', type: 'string' }),
-    defineField({ name: 'status', title: 'Yayın durumu', type: 'string', options: { list: [{ title: 'Taslak', value: 'draft' }, { title: 'Yayında', value: 'published' }] }, initialValue: 'draft', validation: Rule => Rule.required() }),
+    { name: 'title', title: 'Başlık (TR / EN)', type: 'object', fields: [{ name: 'tr', title: 'Türkçe', type: 'string' }, { name: 'en', title: 'English', type: 'string' }] },
+    { name: 'description', title: 'Açıklama (TR / EN)', type: 'object', fields: [{ name: 'tr', title: 'Türkçe', type: 'text' }, { name: 'en', title: 'English', type: 'text' }] },
+    { name: 'year', title: 'Yıl', type: 'number' },
+    { name: 'role', title: 'Kişisel rol (TR / EN)', type: 'object', fields: [{ name: 'tr', title: 'Türkçe', type: 'string' }, { name: 'en', title: 'English', type: 'string' }] },
+    defineField({ name: 'team', title: 'Takım / organizasyon', type: 'string' }),
+    defineField({ name: 'result', title: 'Sonuç / başarı', type: 'string' }),
+    defineField({ name: 'link', title: 'Yarışma bağlantısı', type: 'url' }),
+    defineField({ name: 'coverImage', title: 'Görsel', type: 'image', options: { hotspot: true } }),
+    defineField({ name: 'status', title: 'Yayın durumu', type: 'string', options: { list: [{ title: 'Taslak', value: 'draft' }, { title: 'Yayında', value: 'published' }] }, initialValue: 'draft' }),
     defineField({ name: 'order', title: 'Sıralama', type: 'number', initialValue: 100 })
   ],
-  preview: { select: { title: 'title.tr', subtitle: 'year' } }
+  preview: { select: { title: 'title.tr', subtitle: 'year', media: 'coverImage' } }
 });
