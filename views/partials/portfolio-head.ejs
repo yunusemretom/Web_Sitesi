@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="<%= t.siteDescription %>">
 <meta name="theme-color" content="#0b111b">
-<meta property="og:title" content="<%= title || t.siteTitle %>">
+<meta property="og:title" content="<%= (typeof title !== 'undefined' && title) ? title : t.siteTitle %>">
 <meta property="og:description" content="<%= t.siteDescription %>">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
