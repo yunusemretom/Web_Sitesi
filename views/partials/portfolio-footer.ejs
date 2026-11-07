@@ -1,6 +1,17 @@
 <footer class="site-footer-v2">
   <a class="brand" href="<%= routeFor('home', locale) %>"><span class="brand-mark">YT</span><span>yunusemretom<span class="brand-dot">.</span></span></a>
   <p>© <%= new Date().getFullYear() %> Yunus Emre Tom · <%= t.footer %></p>
-  <div class="footer-links"><a href="https://github.com/yunusemretom" target="_blank" rel="noopener">GitHub ↗</a><a href="https://linkedin.com/in/yunusemretom" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+  <div class="footer-links">
+    <% if (site && site.githubUrl) { %>
+      <a href="<%= site.githubUrl %>" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <% } else { %>
+      <a href="https://github.com/yunusemretom" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <% } %>
+    <% if (site && site.linkedinUrl) { %>
+      <a href="<%= site.linkedinUrl %>" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    <% } else { %>
+      <a href="https://linkedin.com/in/yunusemretom" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    <% } %>
+  </div>
 </footer>
 <script src="/js/portfolio.js" defer></script>

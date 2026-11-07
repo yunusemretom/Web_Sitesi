@@ -1,0 +1,46 @@
+<% const detailUrl = routeFor('projects', locale) + '/' + project.slug; %>
+<article class="project-tile">
+  <div class="tile-top">
+    <span><%= String(index + 1).padStart(2, '0') %> / <%= project.sourceType === 'github' ? 'GITHUB' : (locale === 'tr' ? 'PROJE' : 'PROJECT') %></span>
+    <% if (project.category) { %><span><%= project.category %></span><% } %>
+  </div>
+
+  <a
+    class="tile-art"
+    href="<%= detailUrl %>"
+    aria-label="<%= project.title %>"
+    <% if (project.coverImageUrl) { %>style="background-image:url('<%= project.coverImageUrl %>');background-size:cover;background-position:<%= project.coverObjectPosition || '50% 50%' %>"<% } %>
+  >
+    <% if (!project.coverImageUrl) { %>
+      <div class="tile-art-lines"></div>
+      <span><%= project.category || (project.githubMeta && project.githubMeta.language) || 'PROJECT' %></span>
+    <% } %>
+  </a>
+
+  <h3><a class="tile-title-link" href="<%= detailUrl %>"><%= project.title %></a></h3>
+
+  <% if (project.summary) { %>
+    <p class="tile-summary"><%= project.summary %></p>
+  <% } %>
+
+  <% if (project.technologies && project.technologies.length) { %>
+    <div class="tile-tags" aria-label="<%= locale === 'tr' ? 'Kullanılan teknolojiler' : 'Technologies' %>">
+      <% project.technologies.slice(0, 5).forEach(tech => { %>
+        <span><%= tech %></span>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <div class="tile-bottom">
+    <span class="tile-status"><%= (t.projectStatus && t.projectStatus[project.status]) || '' %></span>
+    <div class="tile-actions">
+      <% if (project.repositoryUrl) { %>
+        <a class="tile-ext-link" href="<%= project.repositoryUrl %>" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <% } %>
+      <% if (project.demoUrl) { %>
+        <a class="tile-ext-link" href="<%= project.demoUrl %>" target="_blank" rel="noopener noreferrer">Demo ↗</a>
+      <% } %>
+      <a class="tile-detail-link" href="<%= detailUrl %>"><%= locale === 'tr' ? 'İncele' : 'Details' %> ↗</a>
+    </div>
+  </div>
+</article>

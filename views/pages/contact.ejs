@@ -1,1 +1,61 @@
-<!doctype html><html lang="<%= locale %>"><head><%- include('../partials/portfolio-head') %><title><%= t.nav.contact %> — Yunus Emre Tom</title></head><body class="portfolio-v2"><%- include('../partials/portfolio-nav') %><main class="shell inner-page contact-page"><p class="eyebrow">04 / CONTACT</p><h1 class="page-title"><%= site.contactTitle || t.contactTitle %></h1><p class="page-intro"><%= site.contactText || t.contactText %></p><div class="contact-grid"><% if (profile.email) { %><a class="contact-card" href="mailto:<%= profile.email %>"><span><%= t.email %></span><strong><%= profile.email %></strong><i>↗</i></a><% } %><% if (site.githubUrl) { %><a class="contact-card" href="<%= site.githubUrl %>" target="_blank" rel="noopener"><span><%= t.github %></span><strong><%= site.githubUrl.replace('https://', '').replace('http://', '') %></strong><i>↗</i></a><% } %><% if (site.linkedinUrl) { %><a class="contact-card" href="<%= site.linkedinUrl %>" target="_blank" rel="noopener"><span>LinkedIn</span><strong><%= site.linkedinUrl.replace('https://', '').replace('http://', '') %></strong><i>↗</i></a><% } %><% if (profile.location) { %><div class="contact-card"><span><%= t.location %></span><strong><%= profile.location %></strong><i>⌖</i></div><% } %></div></main><%- include('../partials/portfolio-footer') %></body></html>
+<!doctype html>
+<html lang="<%= locale %>">
+<head>
+  <%- include('../partials/portfolio-head') %>
+  <title><%= t.nav.contact %> — Yunus Emre Tom</title>
+</head>
+<body class="portfolio-v2">
+<%- include('../partials/portfolio-nav') %>
+<main class="shell inner-page contact-page">
+  <p class="eyebrow">04 / <%= locale === 'tr' ? 'İLETİŞİM' : 'CONTACT' %></p>
+  <h1 class="page-title"><%= site.contactTitle || t.contactTitle %></h1>
+  <p class="page-intro"><%= site.contactText || t.contactText %></p>
+
+  <% const emailAddr = site.contactEmail || profile.email; %>
+  <div class="contact-grid">
+    <% if (emailAddr) { %>
+      <a class="contact-card" href="mailto:<%= emailAddr %>">
+        <span><%= t.email %></span>
+        <strong><%= emailAddr %></strong>
+        <i aria-hidden="true">↗</i>
+      </a>
+    <% } %>
+
+    <% if (site.githubUrl) { %>
+      <a class="contact-card" href="<%= site.githubUrl %>" target="_blank" rel="noopener noreferrer">
+        <span><%= t.github %></span>
+        <strong><%= site.githubUrl.replace(/^https?:\/\//, '') %></strong>
+        <i aria-hidden="true">↗</i>
+      </a>
+    <% } %>
+
+    <% if (site.linkedinUrl) { %>
+      <a class="contact-card" href="<%= site.linkedinUrl %>" target="_blank" rel="noopener noreferrer">
+        <span>LinkedIn</span>
+        <strong><%= site.linkedinUrl.replace(/^https?:\/\//, '') %></strong>
+        <i aria-hidden="true">↗</i>
+      </a>
+    <% } %>
+
+    <% if (site.socialLinks && site.socialLinks.length) { %>
+      <% site.socialLinks.forEach(item => { %>
+        <a class="contact-card" href="<%= item.url %>" target="_blank" rel="noopener noreferrer">
+          <span><%= item.label %></span>
+          <strong><%= item.handle || item.url.replace(/^https?:\/\//, '') %></strong>
+          <i aria-hidden="true">↗</i>
+        </a>
+      <% }) %>
+    <% } %>
+
+    <% if (profile.location) { %>
+      <div class="contact-card">
+        <span><%= t.location %></span>
+        <strong><%= profile.location %></strong>
+        <i aria-hidden="true">⌖</i>
+      </div>
+    <% } %>
+  </div>
+</main>
+<%- include('../partials/portfolio-footer') %>
+</body>
+</html>
