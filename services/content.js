@@ -710,11 +710,225 @@ async function getSiteContent(locale = 'tr') {
   };
 }
 
+const sampleBlogPosts = [
+  {
+    _id: 'blog-stm32-flight-controller-pcb',
+    slug: 'stm32-ucus-kontrol-karti-pcb-tasarimi',
+    status: 'published',
+    featured: true,
+    order: 10,
+    publishedAt: '2026-10-18',
+    readingTime: 7,
+    category: {
+      tr: 'Gömülü Sistemler & PCB',
+      en: 'Embedded Systems & PCB'
+    },
+    title: {
+      tr: 'STM32 Tabanlı Uçuş Kontrol Kartı Tasarımında Sinyal Bütünlüğü ve PCB Yerleşimi',
+      en: 'Signal Integrity and PCB Layout in STM32-Based Flight Controller Design'
+    },
+    excerpt: {
+      tr: 'İHA uçuş kontrol kartlarında IMU sensör izolasyonu, anahtarlamalı güç regülatörü gürültüsü, kristal osilatör yerleşimi ve toprak dönüş yolları üzerine pratik tasarım notları.',
+      en: 'Practical engineering notes on IMU sensor isolation, switching regulator noise, crystal oscillator placement and ground return paths in UAV flight controller boards.'
+    },
+    content: {
+      tr: `İnsansız hava araçlarında kullanılan bir uçuş kontrol kartı (Flight Controller), yüksek frekanslı PWM motor sürücü hatları ile mikro-g seviyesinde titreşim ve açısal hız ölçen hassas MEMS sensörleri (IMU, barometre, manyetometre) aynı küçük PCB alanı üzerinde barındırır. Bu durum, şematik tasarımdan çok PCB yerleşimini (layout) belirleyici hale getirir.
+
+## 1. Güç Dağıtımı ve LDO / Buck İzolasyonu
+Uçuş kontrol kartlarında bataryadan gelen 3S–6S gerilimi düşürmek için kullanılan anahtarlamalı (Buck) regülatörler yüksek verim sağlasa da çıkışlarında anahtarlama ripılı üretir. Mikrodenetleyici (STM32F4 / AT32F4) ve dijital çevre birimleri için ayrı bir regülatör hattı kullanılırken, jiroskop/ivmeölçer (IMU) beslemesi mutlaka düşük gürültülü (Low-Noise LDO) ayrı bir hat üzerinden sağlanmalıdır.
+
+## 2. IMU Yerleşimi ve Mekanik Titreşim
+IMU sensörünün kartın geometrik merkezine yakın konumlandırılması ve montaj deliklerinden gelen mekanik gerilmelerden uzak tutulması gerekir. Sensörün hemen altına yüksek akım taşıyan bakır yollar veya anahtarlama bobinleri yerleştirilmemelidir; aksi halde manyetik kuplaj ve termal kayma (drift) ölçümleri doğrudan bozar.
+
+## 3. Kristal Osilatör ve SPI Hatları
+Yüksek hızlı SPI üzerinden okunan IMU verilerinde saat (SCK) hattının empedans sürekliliği ve kesintisiz referans toprak düzlemi (GND plane) kritik önem taşır. HSE kristal osilatörü MCU pinlerine en kısa mesafede tutulmalı ve çevresi koruma halkası (guard ring) ile izole edilmelidir.`,
+      en: `A flight controller board for unmanned aerial vehicles packs high-frequency PWM motor outputs alongside sensitive MEMS sensors (IMU, barometer, magnetometer) within a compact footprint. Because of this density, physical PCB layout decisions often matter even more than the schematic itself.
+
+## 1. Power Tree & LDO vs. Buck Isolation
+While step-down switching (Buck) regulators efficiently step down 3S–6S battery voltages, their switching ripple can degrade sensor noise floors. Feeding the MCU (STM32F4 / AT32F4) and digital peripherals from a dedicated rail while isolating the IMU behind an ultra-low-noise LDO significantly improves attitude estimation stability.
+
+## 2. IMU Placement & Mechanical Coupling
+Placing the primary IMU near the board's center of mass and away from mounting screw stress concentrations reduces mechanical vibration coupling. High-current traces and inductor switching nodes must be kept clear of the layer directly beneath the sensor package to prevent thermal drift and EMI injection.
+
+## 3. Crystal Oscillator & High-Speed SPI Routing
+Fast SPI gyro sampling requires clean clock edges and an unbroken ground return path underneath the signal traces. The HSE crystal oscillator should sit as close as possible to the MCU pins, surrounded by a grounded guard ring with no high-speed signals crossing underneath.`
+    },
+    tags: ['STM32', 'PCB Design', 'KiCad', 'Signal Integrity', 'Flight Controller']
+  },
+  {
+    _id: 'blog-gnss-jamming-spoofing-detection',
+    slug: 'otonom-iha-gnss-parazit-ve-spoofing-tespiti',
+    status: 'published',
+    featured: true,
+    order: 20,
+    publishedAt: '2026-10-29',
+    readingTime: 6,
+    category: {
+      tr: 'GNSS / RF & Otonom Görev',
+      en: 'GNSS / RF & Autonomous Mission'
+    },
+    title: {
+      tr: 'Otonom İHA Görevlerinde GNSS Karıştırma (Jamming) ve Yanıltma (Spoofing) Tespiti',
+      en: 'Detecting GNSS Jamming and Spoofing in Autonomous UAV Missions'
+    },
+    excerpt: {
+      tr: 'NÖBETÇİ projesi kapsamında uydu sinyallerinde SNR/C/N0 düşüşleri, AGC değişimleri ve dağıtık düğümler arası konum tutarlılığı ile parazit kaynağını erken aşamada yakalama yaklaşımı.',
+      en: 'Early-stage interference detection using SNR/C/N0 drops, AGC shifts and multi-node position consistency checks within the NÖBETÇİ monitoring architecture.'
+    },
+    content: {
+      tr: `Otonom İHA görevlerinde yalnızca EKF (Genişletilmiş Kalman Filtresi) çıktısına güvenmek, sahada karşılaşılabilen RF karıştırma (jamming) veya sahte sinyal enjeksiyonu (spoofing) durumlarında platformun rota dışına çıkmasına yol açabilir. NÖBETÇİ GNSS Parazit Tespit Ağı konseptini geliştirirken bu problemi ham alıcı telemetrisi ve çoklu düğüm doğrulaması ile ele aldık.
+
+## 1. Jamming ve Spoofing Arasındaki İmza Farkı
+Klasik gürültü karıştırmasında (jamming) alıcının taşıyıcı-gürültü oranı (C/N0) hızla düşerken otomatik kazanç kontrolü (AGC) doyuma ulaşır. Buna karşılık spoofing saldırılarında C/N0 aniden yükselebilir ve birden fazla uydunun saat kayması (clock bias) eşzamanlı olarak olağandışı bir korelasyon gösterir.
+
+## 2. Dağıtık Düğümler ile Mekansal Doğrulama
+Tek bir alıcıda ortam kaynaklı sinyal zayıflaması ile kasıtlı paraziti ayırt etmek güçtür. Sahadaki birden fazla sabit veya hareketli düğümden alınan zaman damgalı SNR, DOP ve pseudorange artıklarını (residuals) karşılaştırmak, parazitin yönünü ve etki yarıçapını yüksek doğrulukla kestirmeyi sağlar.
+
+## 3. Otopilot İçin Güvenli Geçiş (Fail-Safe) Kurgusu
+Anomali skoru eşik değeri aştığında uçuş kontrolcüsü GNSS ağırlığını düşürerek IMU + barometre + optik akış / görsel odometri tabanlı ölü hesaplama (dead-reckoning) moduna kesintisiz geçiş yapmalıdır.`,
+      en: `Relying solely on default EKF (Extended Kalman Filter) position outputs during autonomous UAV missions leaves the platform vulnerable to RF jamming and GNSS spoofing. While designing the NÖBETÇİ GNSS Interference Detection Network, we approached this challenge by combining raw receiver telemetry with multi-node spatial verification.
+
+## 1. Distinguishing Jamming from Spoofing Signatures
+Under broadband noise jamming, carrier-to-noise density (C/N0) drops sharply across tracked satellites while the receiver's Automatic Gain Control (AGC) saturates. Spoofing, by contrast, often manifests as an abrupt power surge accompanied by unnatural correlation across satellite clock bias and pseudorange residuals.
+
+## 2. Multi-Node Spatial Cross-Verification
+A single receiver can struggle to separate multipath shadowing from deliberate interference. Correlating time-synchronized SNR, DOP and pseudorange anomalies across distributed ground or aerial nodes makes it possible to localize the interference footprint in real time.
+
+## 3. Autopilot Fail-Safe Transition
+Once the anomaly score crosses a confidence threshold, the flight controller must gracefully de-weight GNSS measurements and transition to IMU, barometric and visual/optical-flow dead-reckoning without inducing attitude transients.`
+    },
+    tags: ['GNSS', 'RF Monitoring', 'UAV Autonomy', 'Signal Processing', 'Kalman Filter']
+  },
+  {
+    _id: 'blog-ros2-px4-gazebo-simulation',
+    slug: 'ros2-px4-ve-gazebo-ile-otonom-hedef-takibi',
+    status: 'published',
+    featured: false,
+    order: 30,
+    publishedAt: '2026-11-04',
+    readingTime: 8,
+    category: {
+      tr: 'Simülasyon & Bilgisayarlı Görü',
+      en: 'Simulation & Computer Vision'
+    },
+    title: {
+      tr: 'ROS2, PX4 ve Gazebo ile Otonom Hedef Takibi Simülasyon Mimarisi',
+      en: 'Autonomous Target Tracking Simulation Architecture with ROS2, PX4 and Gazebo'
+    },
+    excerpt: {
+      tr: 'Saha uçuşu öncesinde YOLO tabanlı görsel hedef tespiti ve PX4 Offboard kontrol döngülerinin Gazebo SITL ortamında uçtan uca doğrulanması.',
+      en: 'End-to-end validation of YOLO-based visual target detection and PX4 Offboard control loops in Gazebo SITL prior to field flights.'
+    },
+    content: {
+      tr: `Savaşan İHA ve otonom görev yarışmalarında algoritmaları doğrudan gerçek platform üzerinde denemek hem yüksek kırım riski taşır hem de iterasyon hızını düşürür. Bu nedenle ROS2, PX4 SITL (Software-in-the-Loop) ve Gazebo simülasyonunu tek bir kapalı çevrim mimaride birleştirdik.
+
+## 1. uXRCE-DDS ile Düşük Gecikmeli PX4 – ROS2 Köprüsü
+PX4 otopilotu ile ROS2 düğümleri arasındaki haberleşmede uXRCE-DDS kullanarak araç durumu, yerel konum ve hız setpoint mesajlarını milisaniye mertebesinde gecikmeyle aktarıyoruz. Offboard moduna geçişte kesintisiz 20–50 Hz setpoint akışı sağlamak güvenli kilitlenme için temel şarttır.
+
+## 2. Görüntü İşleme Gecikmesi ve Kontrol Kararlılığı
+Gazebo sanal kamerasından alınan kareler üzerinde çalışan YOLO hedef tespit düğümü, bounding-box merkezinden açısal hata (yaw/pitch error) üretir. Görüntü işleme gecikmesinin (latency) kontrol döngüsünde salınıma (oscillation) yol açmaması için hedef hız vektörünü düşük geçiren filtre ve öngörülü (feed-forward) terimlerle yumuşatıyoruz.
+
+## 3. Simülasyondan Sahaya (Sim-to-Real) Geçiş
+Sensör gürültüsü, rüzgar bozucuları ve kamera kare hızı değişimleri simülasyon aşamasında parametrik olarak test edildiğinde, aynı ROS2 paketleri görev bilgisayarına (Jetson / Raspberry Pi) taşındığında sahada minimum kalibrasyonla kararlı uçuş elde edilir.`,
+      en: `Testing autonomous pursuit and target-locking algorithms directly on physical aircraft carries high crash risk and slows down iteration. To solve this, we built a closed-loop Software-in-the-Loop (SITL) pipeline combining ROS2, PX4 and Gazebo before every field test campaign.
+
+## 1. Low-Latency PX4 – ROS2 Bridge via uXRCE-DDS
+Using uXRCE-DDS between PX4 SITL and ROS2 nodes enables millisecond-level exchange of vehicle attitude, local position and velocity setpoints. Maintaining a deterministic 20–50 Hz setpoint stream is essential before engaging Offboard mode.
+
+## 2. Vision Latency & Control Loop Damping
+Frames streamed from the simulated Gazebo camera are processed by a YOLO detection node to compute bounding-box center offsets (yaw and pitch error). To prevent inference latency from exciting pitch/yaw oscillations, we combine filtered error derivatives with feed-forward velocity commands.
+
+## 3. Smooth Sim-to-Real Transfer
+By injecting realistic wind gusts, sensor noise and variable camera frame rates inside Gazebo, the exact same ROS2 packages deploy onto the onboard companion computer with minimal field retuning.`
+    },
+    tags: ['ROS2', 'PX4', 'Gazebo', 'Computer Vision', 'YOLO']
+  }
+];
+
+function formatBlogPost(item, locale = 'tr') {
+  const slugVal =
+    typeof item.slug === 'string'
+      ? item.slug
+      : (item.slug && item.slug.current) || item._id || 'post';
+
+  const coverImageUrl = item.coverImageUrl
+    ? buildSanityImageUrl(item.coverImageUrl, {
+        width: 1200,
+        height: 675,
+        hotspot: item.coverHotspot,
+        crop: item.coverCrop,
+        dimensions: item.coverDimensions
+      })
+    : null;
+
+  const rawContent = localized(item.content, locale) || '';
+  const blocks = rawContent
+    .split(/\n\s*\n/)
+    .map(b => b.trim())
+    .filter(Boolean)
+    .map(block => {
+      if (block.startsWith('## ')) {
+        return { type: 'heading', text: block.replace(/^##\s+/, '') };
+      }
+      return { type: 'paragraph', text: block };
+    });
+
+  return {
+    _id: item._id,
+    slug: slugVal,
+    status: item.status || 'published',
+    featured: Boolean(item.featured),
+    order: typeof item.order === 'number' ? item.order : 50,
+    publishedAt: item.publishedAt || '2026-10-18',
+    readingTime: item.readingTime || 6,
+    category: localized(item.category, locale) || (locale === 'tr' ? 'Mühendislik' : 'Engineering'),
+    title: localized(item.title, locale) || 'Blog',
+    excerpt: localized(item.excerpt, locale) || '',
+    content: rawContent,
+    blocks,
+    coverImageUrl,
+    coverObjectPosition: computeHotspotObjectPosition(item.coverHotspot, '50% 50%'),
+    tags: Array.isArray(item.tags) ? item.tags.filter(Boolean) : []
+  };
+}
+
+async function getBlogPosts(locale = 'tr') {
+  const remote = await query(`*[_type == "blogPost" && !(_id in path("drafts.**")) && status == "published"] | order(order asc, publishedAt desc) {
+    _id,
+    "slug": slug.current,
+    status,
+    featured,
+    order,
+    publishedAt,
+    readingTime,
+    category,
+    title,
+    excerpt,
+    content,
+    tags,
+    "coverImageUrl": coverImage.asset->url,
+    "coverHotspot": coverImage.hotspot,
+    "coverCrop": coverImage.crop,
+    "coverDimensions": coverImage.asset->metadata.dimensions
+  }`);
+
+  const source = Array.isArray(remote) && remote.length > 0 ? remote : sampleBlogPosts;
+  return source.map(item => formatBlogPost(item, locale));
+}
+
+async function getBlogPostBySlug(locale = 'tr', slug) {
+  const posts = await getBlogPosts(locale);
+  return posts.find(p => p.slug === slug) || null;
+}
+
 module.exports = {
   getSiteContent,
   getProjects,
   getCompetitions,
   getProfile,
+  getBlogPosts,
+  getBlogPostBySlug,
+  sampleBlogPosts,
   resolveProjectsList,
   buildSanityImageUrl,
   computeHotspotObjectPosition

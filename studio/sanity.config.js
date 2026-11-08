@@ -54,7 +54,8 @@ const deskStructure = S =>
       S.divider(),
       S.documentTypeListItem('profile').title('Profil ve Fotoğraf Yönetimi'),
       S.documentTypeListItem('siteSettings').title('Ana Sayfa, Metinler ve Ayarlar'),
-      S.documentTypeListItem('competition').title('Yarışmalar')
+      S.documentTypeListItem('competition').title('Yarışmalar'),
+      S.documentTypeListItem('blogPost').title('Blog Yazıları')
     ]);
 
 export default defineConfig({

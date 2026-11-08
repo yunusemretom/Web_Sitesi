@@ -1,7 +1,7 @@
 {
   "siteTitle": "Yunus Emre Tom — Mühendislik ve Teknoloji",
   "siteDescription": "Yazılım, gömülü sistemler, elektronik ve insansız hava araçları üzerine çalışmalar.",
-  "nav": { "home": "Ana Sayfa", "about": "Hakkımda", "projects": "Projeler", "competitions": "Yarışmalar", "contact": "İletişim", "language": "EN" },
+  "nav": { "home": "Ana Sayfa", "about": "Hakkımda", "projects": "Projeler", "competitions": "Yarışmalar", "blog": "Blog", "contact": "İletişim", "language": "EN" },
   "heroEyebrow": "MÜHENDİSLİK · YAZILIM · ROBOTİK",
   "heroTitle": "Fikirleri çalışan sistemlere dönüştürüyorum.",
   "heroText": "Yazılım, elektronik ve insansız hava araçlarının kesişiminde; araştırıyor, tasarlıyor ve prototip geliştiriyorum.",
@@ -22,5 +22,11 @@
   "contactTitle": "Birlikte bir şey geliştirelim.", "contactText": "Proje, teknik iş birliği veya fırsatlar hakkında iletişime geçebilirsin.",
   "email": "E-posta", "location": "Konum", "locationValue": "Ankara, Türkiye", "github": "GitHub profili",
   "detail": "Çalışmayı incele", "backToProjects": "Projelere dön", "noProjects": "Henüz yayınlanmış proje bulunmuyor.",
+  "blogTitle": "Teknik yazılar ve mühendislik notları.",
+  "blogIntro": "Gömülü sistemler, PCB tasarımı, otonom İHA mimarileri ve saha testlerinden elde edilen teknik notlar.",
+  "readArticle": "Yazıyı oku",
+  "backToBlog": "Tüm yazılara dön",
+  "minRead": "dk okuma",
+  "noPosts": "Henüz yayınlanmış blog yazısı bulunmuyor.",
   "footer": "Tüm hakları saklıdır.", "adminNote": "İçerikler Sanity CMS üzerinden yönetilir."
 }

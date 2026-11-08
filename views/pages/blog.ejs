@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="<%= locale %>">
+<head>
+  <%- include('../partials/portfolio-head') %>
+  <title><%= t.nav.blog %> — Yunus Emre Tom</title>
+</head>
+<body class="portfolio-v2">
+<%- include('../partials/portfolio-nav') %>
+<main class="shell inner-page">
+  <p class="eyebrow">04 / <%= locale === 'tr' ? 'TEKNİK YAZILAR & BLOG' : 'TECHNICAL ARTICLES & BLOG' %></p>
+  <h1 class="page-title"><%= t.nav.blog %><span class="title-period">.</span></h1>
+  <p class="page-intro"><%= t.blogIntro %></p>
+
+  <% if (posts && posts.length) { %>
+    <div class="blog-grid">
+      <% posts.forEach((post, index) => { %>
+        <article class="blog-card" style="--card-i: <%= index %>">
+          <div class="blog-card-top">
+            <span class="blog-badge"><%= post.category %></span>
+            <time class="blog-date" datetime="<%= post.publishedAt %>"><%= post.publishedAt %></time>
+          </div>
+
+          <a class="blog-card-art-link" href="<%= routeFor('blog', locale) + '/' + post.slug %>" aria-label="<%= post.title %>">
+            <div class="tile-art blog-card-art">
+              <% if (post.coverImageUrl) { %>
+                <img
+                  src="<%= post.coverImageUrl %>"
+                  alt="<%= post.title %>"
+                  loading="lazy"
+                  style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:2"
+                >
+              <% } else { %>
+                <span><%= (post.tags && post.tags[0]) || post.category %></span>
+              <% } %>
+            </div>
+          </a>
+
+          <h2 class="blog-card-heading">
+            <a class="tile-title-link" href="<%= routeFor('blog', locale) + '/' + post.slug %>"><%= post.title %></a>
+          </h2>
+
+          <% if (post.excerpt) { %>
+            <p class="blog-card-excerpt"><%= post.excerpt %></p>
+          <% } %>
+
+          <% if (post.tags && post.tags.length) { %>
+            <div class="tile-tags">
+              <% post.tags.slice(0, 4).forEach(tag => { %>
+                <span><%= tag %></span>
+              <% }) %>
+            </div>
+          <% } %>
+
+          <div class="tile-bottom blog-card-bottom">
+            <span class="tile-status"><%= post.readingTime %> <%= t.minRead %></span>
+            <div class="tile-actions">
+              <a class="tile-detail-link" href="<%= routeFor('blog', locale) + '/' + post.slug %>"><%= t.readArticle %> ↗</a>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p><%= t.noPosts %></p>
+  <% } %>
+</main>
+<%- include('../partials/portfolio-footer') %>
+</body>
+</html>
+

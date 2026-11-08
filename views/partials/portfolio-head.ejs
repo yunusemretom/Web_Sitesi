@@ -1,11 +1,13 @@
 <%
   const computedTitle =
     (typeof title !== 'undefined' && title) ? title :
+    (typeof post !== 'undefined' && post && post.title) ? (post.title + ' — Yunus Emre Tom') :
     (typeof project !== 'undefined' && project && project.title) ? (project.title + ' — Yunus Emre Tom') :
     (typeof page !== 'undefined' && page && page !== 'home' && t && t.nav && t.nav[page]) ? (t.nav[page] + ' — Yunus Emre Tom') :
     t.siteTitle;
 
   const computedDescription =
+    (typeof post !== 'undefined' && post && post.excerpt) ? post.excerpt :
     (typeof project !== 'undefined' && project && project.summary) ? project.summary :
     (typeof site !== 'undefined' && site && site.heroText && page === 'home') ? site.heroText :
     t.siteDescription;
@@ -22,4 +24,4 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="/css/portfolio.css?v=2.3">
+<link rel="stylesheet" href="/css/portfolio.css?v=2.4">

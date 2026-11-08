@@ -1,7 +1,7 @@
 {
   "siteTitle": "Yunus Emre Tom — Engineering & Technology",
   "siteDescription": "Work across software, embedded systems, electronics and unmanned aerial vehicles.",
-  "nav": { "home": "Home", "about": "About", "projects": "Projects", "competitions": "Competitions", "contact": "Contact", "language": "TR" },
+  "nav": { "home": "Home", "about": "About", "projects": "Projects", "competitions": "Competitions", "blog": "Blog", "contact": "Contact", "language": "TR" },
   "heroEyebrow": "ENGINEERING · SOFTWARE · ROBOTICS",
   "heroTitle": "Turning ideas into working systems.",
   "heroText": "Working at the intersection of software, electronics and unmanned aerial systems — researching, designing and building prototypes.",
@@ -22,5 +22,11 @@
   "contactTitle": "Let's build something together.", "contactText": "Feel free to reach out about projects, technical collaboration or opportunities.",
   "email": "Email", "location": "Location", "locationValue": "Ankara, Türkiye", "github": "GitHub profile",
   "detail": "View project", "backToProjects": "Back to projects", "noProjects": "No published projects yet.",
+  "blogTitle": "Technical articles & engineering notes.",
+  "blogIntro": "Field notes and technical deep-dives on embedded systems, PCB design, autonomous UAV architectures and testing.",
+  "readArticle": "Read article",
+  "backToBlog": "Back to all articles",
+  "minRead": "min read",
+  "noPosts": "No published blog posts yet.",
   "footer": "All rights reserved.", "adminNote": "Content is managed with Sanity CMS."
 }

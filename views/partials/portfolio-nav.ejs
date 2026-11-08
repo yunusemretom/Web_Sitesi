@@ -2,12 +2,18 @@
 <header class="site-nav">
   <a class="brand" href="<%= routeFor('home', locale) %>"><span class="brand-mark">YT</span><span>yunusemretom<span class="brand-dot">.</span></span></a>
   <nav class="desktop-nav" id="primary-nav" aria-label="<%= locale === 'tr' ? 'Ana menü' : 'Primary' %>">
-    <% ['home','about','projects','competitions','contact'].forEach(key => { %>
+    <% ['home','about','projects','competitions','blog','contact'].forEach(key => { %>
       <a class="<%= page === key ? 'active' : '' %>" href="<%= routeFor(key, locale) %>"><%= t.nav[key] %></a>
     <% }) %>
   </nav>
   <div class="nav-Utilities">
-    <a class="language-switch" href="<%= routeFor(page, locale === 'tr' ? 'en' : 'tr') %>" lang="<%= locale === 'tr' ? 'en' : 'tr' %>"><%= t.nav.language %> ↗</a>
+    <%
+      const targetLocale = locale === 'tr' ? 'en' : 'tr';
+      const detailSlugSuffix =
+        (typeof post !== 'undefined' && post && post.slug) ? ('/' + post.slug) :
+        (typeof project !== 'undefined' && project && project.slug) ? ('/' + project.slug) : '';
+    %>
+    <a class="language-switch" href="<%= routeFor(page, targetLocale) + detailSlugSuffix %>" lang="<%= targetLocale %>"><%= t.nav.language %> ↗</a>
     <button
       class="mobile-nav-toggle"
       type="button"

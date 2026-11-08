@@ -7,6 +7,7 @@ const paths = {
   about: { tr: 'hakkimda', en: 'about' },
   projects: { tr: 'projeler', en: 'projects' },
   competitions: { tr: 'yarismalar', en: 'competitions' },
+  blog: { tr: 'blog', en: 'blog' },
   contact: { tr: 'iletisim', en: 'contact' }
 };
 function localeFrom(value) { return value === 'en' ? 'en' : 'tr'; }

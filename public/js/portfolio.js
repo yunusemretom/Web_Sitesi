@@ -153,7 +153,7 @@
     'IntersectionObserver' in window
   ) {
     const targets = document.querySelectorAll(
-      '.project-tile, .closing-cta, .competition-row, .contact-card, .detail-panel'
+      '.project-tile, .blog-card, .closing-cta, .competition-row, .contact-card, .detail-panel'
     );
     const observer = new IntersectionObserver(
       (entries) => {

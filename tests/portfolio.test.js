@@ -104,6 +104,10 @@ async function runTests() {
       '/en/projects/yer-istasyonu',
       '/tr/yarismalar',
       '/en/competitions',
+      '/tr/blog',
+      '/en/blog',
+      '/tr/blog/stm32-ucus-kontrol-karti-pcb-tasarimi',
+      '/en/blog/stm32-ucus-kontrol-karti-pcb-tasarimi',
       '/tr/iletisim',
       '/en/contact'
     ];
